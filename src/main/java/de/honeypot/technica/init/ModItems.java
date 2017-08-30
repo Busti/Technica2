@@ -23,7 +23,7 @@ public class ModItems {
 
 
     public static Item COPPER_COIL;
-
+    public static Item ELECTRIC_ENGINE;
 
     private static boolean isFinished = false;
     private static ArrayList<Item> items = new ArrayList<Item>(20);
@@ -60,7 +60,8 @@ public class ModItems {
         @SubscribeEvent
         public static void registerItems(final RegistryEvent.Register<Item> event) {
 
-            COPPER_COIL = ItemGeneric.create("copper_coil");
+            COPPER_COIL     = new ItemGeneric("copper_coil");
+            ELECTRIC_ENGINE = new ItemGeneric("electric_engine");
 
             isFinished = true;
 
