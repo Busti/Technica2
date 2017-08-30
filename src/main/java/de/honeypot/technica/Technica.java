@@ -19,7 +19,7 @@ public class Technica {
     public static final String MODID = "technica";
     public static final String VERSION = "1.0";
 
-    public static final CreativeTabTechnica creativeTabTechnica = new CreativeTabTechnica("Technica");
+    public static final CreativeTabTechnica CREATIVE_TAB_TECHNICA = new CreativeTabTechnica("Technica");
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
