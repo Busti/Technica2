@@ -1,4 +1,4 @@
-package de.honeypot.technica;
+package de.honeypot.technica.item;
 
 import de.honeypot.technica.init.ModItems;
 import net.minecraft.item.Item;

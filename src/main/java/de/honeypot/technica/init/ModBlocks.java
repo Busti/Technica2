@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class ModBlocks {
 
 
-    public static final Block COPPER_ORE = new BlockGeneric(Material.ROCK, "foo");
+    public static Block COPPER_ORE;
 
     private static boolean isFinished = false;
     private static ArrayList<Block> blocks = new ArrayList<Block>(20);
@@ -38,7 +38,12 @@ public class ModBlocks {
         @SubscribeEvent
         public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 
+
+
+            COPPER_ORE = new BlockGeneric(Material.ROCK, "foo");
+
             isFinished = true;
+
             blocks.forEach(  event.getRegistry()::register  );
 
         }

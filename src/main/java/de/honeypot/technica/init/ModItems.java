@@ -1,6 +1,7 @@
 package de.honeypot.technica.init;
 
 import de.honeypot.technica.Technica;
+import de.honeypot.technica.item.ItemGeneric;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -13,8 +14,12 @@ import java.util.ArrayList;
 public class ModItems {
 
 
+    public static Item COPPER_COIL;
+
+
     private static boolean isFinished = false;
     private static ArrayList<Item> items = new ArrayList<Item>(20);
+
 
 
     public static void registerItem(Item item){
@@ -35,7 +40,10 @@ public class ModItems {
         @SubscribeEvent
         public static void registerItems(final RegistryEvent.Register<Item> event) {
 
+            COPPER_COIL = ItemGeneric.create("copper_coil");
+
             isFinished = true;
+
             items.forEach(  event.getRegistry()::register  );
 
         }
