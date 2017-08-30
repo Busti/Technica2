@@ -2,13 +2,21 @@ package de.honeypot.technica.init;
 
 import de.honeypot.technica.Technica;
 import de.honeypot.technica.item.ItemGeneric;
+import net.minecraft.client.renderer.ItemModelMesher;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.util.ArrayList;
+
+/**
+ * @author Chloroplast
+ *
+ */
 
 @GameRegistry.ObjectHolder(Technica.MODID)
 public class ModItems {
@@ -30,6 +38,18 @@ public class ModItems {
 
         items.add(item);
 
+
+    }
+
+    public static void registerModels(ItemModelMesher mesher) {
+
+        items.forEach(item -> {
+
+            ModelResourceLocation model = new ModelResourceLocation(item.getRegistryName(), "inventory");
+            ModelLoader.registerItemVariants(item, model);
+            mesher.register(item, 0, model);
+
+        });
 
     }
 

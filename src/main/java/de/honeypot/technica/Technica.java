@@ -1,10 +1,18 @@
 package de.honeypot.technica;
 
-import de.honeypot.technica.init.ModBlocks;
+import de.honeypot.technica.init.ModItems;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+/**
+ * @author Chloroplast, Busti
+ *
+ */
 
 @Mod(modid = Technica.MODID, version = Technica.VERSION)
 public class Technica {
@@ -13,7 +21,15 @@ public class Technica {
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
+
         System.out.println("Starting Technica 2");
-        System.out.println(ModBlocks.COPPER_ORE);
+
+        ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
+        initClient(mesher);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void initClient(ItemModelMesher mesher) {
+        ModItems.registerModels(mesher);
     }
 }

@@ -5,6 +5,11 @@ import net.minecraft.item.Item;
 
 import java.util.HashMap;
 
+/**
+ * @author Chloroplast
+ *
+ */
+
 public class ItemGeneric extends Item {
 
     private final static HashMap<String, Item> ALREADY_KNOWN = new HashMap<String, Item>();
