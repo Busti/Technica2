@@ -1,8 +1,9 @@
 package de.honeypot.technica.init;
 
 import de.honeypot.technica.Technica;
-import de.honeypot.technica.block.CopperOre;
+import de.honeypot.technica.block.BlockGeneric;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 public class ModBlocks {
 
 
-    public static final Block COPPER_ORE = new CopperOre();
+    public static final Block COPPER_ORE = new BlockGeneric(Material.ROCK, "foo");
 
     private static boolean isFinished = false;
     private static ArrayList<Block> blocks = new ArrayList<Block>(20);
