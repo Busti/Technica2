@@ -1,5 +1,6 @@
 package de.honeypot.technica;
 
+import de.honeypot.technica.init.ModBlocks;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -13,5 +14,6 @@ public class Technica {
     @EventHandler
     public void init(FMLInitializationEvent event) {
         System.out.println("Starting Technica 2");
+        ModBlocks.finish();
     }
 }
