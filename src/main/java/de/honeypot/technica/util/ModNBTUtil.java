@@ -9,9 +9,9 @@ import java.util.Collection;
 /**
  * Created by gast2 on 31.08.17.
  */
-public class NBTUtil {
+public class ModNBTUtil {
 
-    public static int getDamageFromItem(ItemStack stack){
+    public static double getDamageFromItem(ItemStack stack){
 
         System.out.println("\r\n##########\r\n");
 
@@ -19,9 +19,10 @@ public class NBTUtil {
 
         Collection<AttributeModifier> attribs = stack.getAttributeModifiers(EntityEquipmentSlot.MAINHAND).get("generic.attackDamage");
 
-        attribs.stream().filter(a -> a.getOperation()==0).mapToDouble(a -> a.getAmount()).sum();
+        double sum      = attribs.stream().filter(a -> a.getOperation()==0).mapToDouble(a -> a.getAmount()).sum();
+        double factor   = attribs.stream().filter(a -> a.getOperation()==2).mapToDouble(a -> a.getAmount()).sum();
 
-        return 0;
+        return sum * (1 + factor);
     }
 
 

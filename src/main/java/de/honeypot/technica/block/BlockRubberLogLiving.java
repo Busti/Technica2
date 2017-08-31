@@ -3,6 +3,7 @@ package de.honeypot.technica.block;
 import de.honeypot.technica.Technica;
 import de.honeypot.technica.init.ModBlocks;
 import de.honeypot.technica.init.ModItems;
+import de.honeypot.technica.util.ModNBTUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -100,7 +101,9 @@ public class BlockRubberLogLiving extends Block {
             return false;
         }
 
-        int dmg = de.honeypot.technica.util.NBTUtil.getDamageFromItem(playerIn.getHeldItem(hand));
+        if(ModNBTUtil.getDamageFromItem(playerIn.getHeldItem(hand)) < 1){
+
+        }
 
 
 

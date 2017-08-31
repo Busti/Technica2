@@ -33,7 +33,7 @@ public class ModBlocks {
             RUBBER_LOG = new BlockRubberLog();
             RUBBER_LOG_LIVING   = new BlockRubberLogLiving();
             ORE_1 = new BlockVariants(Material.ROCK, "multi_ore", 1).setHardness(1.5f).setResistance(10);
-            ORE_1.setHarvestLevel("pickaxe", 1);RUBBER_LOG_LIVING   = new BlockRubberLogLiving();
+            ORE_1.setHarvestLevel("pickaxe", 1);
 
             blocks.forEach(event.getRegistry()::register);
         }
