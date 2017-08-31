@@ -20,12 +20,12 @@ import net.minecraft.world.World;
 /**
  * Created by Chloroplast on 31.08.2017.
  */
-public class BlockRubberLog extends Block{
+public class BlockLogRubber extends Block{
 
-    public final static String RUBBER_LOG = "rubber_log";
+    public final static String RUBBER_LOG = "log_rubber";
     public final static PropertyEnum<BlockLog.EnumAxis> LOG_AXIS = PropertyEnum.<BlockLog.EnumAxis>create("axis", BlockLog.EnumAxis.class);
 
-    public BlockRubberLog(){
+    public BlockLogRubber(){
 
         super(Material.WOOD);
         this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);

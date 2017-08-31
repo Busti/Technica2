@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "technica:dry_resin_bowl"
+      "item": "technica:bowl_resin_dry"
     }
   ],
   "result": {

@@ -1,6 +1,6 @@
 {
   "parent":"item/generated",
   "textures": {
-    "layer0":"technica:items/resin_bowl"
+    "layer0":"technica:items/bowl_resin"
   }
 }

@@ -2,61 +2,61 @@
   "variants": {
 
     "dir=north,status=none":  {
-      "model": "technica:rubber_log"
+      "model": "technica:log_rubber"
     },
     "dir=east,status=none":  {
-      "model": "technica:rubber_log"
+      "model": "technica:log_rubber"
     },
     "dir=south,status=none":  {
-      "model": "technica:rubber_log"
+      "model": "technica:log_rubber"
     },
     "dir=west,status=none":  {
-      "model": "technica:rubber_log"
+      "model": "technica:log_rubber"
     },
     "dir=north,status=fresh": {
-      "model": "technica:rubber_log_fresh"
+      "model": "technica:log_rubber_fresh"
     },
     "dir=east,status=fresh": {
       "y": 90,
-      "model": "technica:rubber_log_fresh"
+      "model": "technica:log_rubber_fresh"
     },
     "dir=south,status=fresh": {
       "y": 180,
-      "model": "technica:rubber_log_fresh"
+      "model": "technica:log_rubber_fresh"
     },
     "dir=west,status=fresh": {
       "y": 270,
-      "model": "technica:rubber_log_fresh"
+      "model": "technica:log_rubber_fresh"
     },
     "dir=north,status=ready": {
-      "model": "technica:rubber_log_ready"
+      "model": "technica:log_rubber_ready"
     },
     "dir=east,status=ready": {
       "y": 90,
-      "model": "technica:rubber_log_ready"
+      "model": "technica:log_rubber_ready"
     },
     "dir=south,status=ready": {
       "y": 180,
-      "model": "technica:rubber_log_ready"
+      "model": "technica:log_rubber_ready"
     },
     "dir=west,status=ready": {
       "y": 270,
-      "model": "technica:rubber_log_ready"
+      "model": "technica:log_rubber_ready"
     },
     "dir=north,status=dry": {
-      "model": "technica:rubber_log_dry"
+      "model": "technica:log_rubber_dry"
     },
     "dir=east,status=dry": {
       "y": 90,
-      "model": "technica:rubber_log_dry"
+      "model": "technica:log_rubber_dry"
     },
     "dir=south,status=dry": {
       "y": 180,
-      "model": "technica:rubber_log_dry"
+      "model": "technica:log_rubber_dry"
     },
     "dir=west,status=dry": {
       "y": 270,
-      "model": "technica:rubber_log_dry"
+      "model": "technica:log_rubber_dry"
     }
   }
 }

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "axis=y":  { "model": "technica:log_rubber" },
+    "axis=z":   { "model": "technica:log_rubber", "x": 90 },
+    "axis=x":   { "model": "technica:log_rubber", "x": 90, "y": 90 },
+    "axis=none": { "model": "technica:log_rubber" }
+  }
+}

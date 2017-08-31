@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 /**
  * Created by gast2 on 31.08.17.
  */
-public class BlockRubberLogLiving extends Block {
+public class BlockLogRubberLiving extends Block {
 
     public enum CUT_DIRECTION implements IStringSerializable {
         NORTH, EAST, SOUTH, WEST;
@@ -44,11 +44,11 @@ public class BlockRubberLogLiving extends Block {
         }
     }
 
-    public final static String RUBBER_LOG_LIVING = "rubber_log_living";
+    public final static String RUBBER_LOG_LIVING = "log_rubber_living";
     public final static PropertyEnum<CUT_DIRECTION> LOG_DIRECTION = PropertyEnum.<CUT_DIRECTION>create("dir", CUT_DIRECTION.class);
     public final static PropertyEnum<CUT_STATUS> LOG_STATUS = PropertyEnum.<CUT_STATUS>create("status", CUT_STATUS.class);
 
-    public BlockRubberLogLiving(){
+    public BlockLogRubberLiving(){
 
         super(Material.WOOD);
 

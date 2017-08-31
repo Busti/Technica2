@@ -19,13 +19,13 @@ import java.util.ArrayList;
 
 @GameRegistry.ObjectHolder(Technica.MODID)
 public class ModItems {
-    public static Item COPPER_COIL;
+    public static Item COIL_COPPER;
+    public static Item INGOT_COPPER;
     public static Item ELECTRIC_ENGINE;
-    public static Item COPPER_INGOT;
     public static Item RUBBER;
     public static Item RUBBER_BAND;
-    public static Item RESIN_BOWL;
-    public static Item DRY_RESIN_BOWL;
+    public static Item BOWL_RESIN;
+    public static Item BOWL_RESIN_DRY;
 
     private static ArrayList<Item> items = new ArrayList<Item>(20);
     private static ArrayList<Item> itemsWithoutModel = new ArrayList<Item>(20);
@@ -50,13 +50,13 @@ public class ModItems {
     public static class RegistrationHandler {
         @SubscribeEvent
         public static void registerItems(final RegistryEvent.Register<Item> event) {
-            COPPER_COIL = new ItemGeneric("copper_coil");
-            COPPER_INGOT = new ItemGeneric("copper_ingot");
+            COIL_COPPER = new ItemGeneric("coil_copper");
+            INGOT_COPPER = new ItemGeneric("ingot_copper");
             ELECTRIC_ENGINE = new ItemGeneric("electric_engine");
             RUBBER = new ItemGeneric("rubber");
             RUBBER_BAND = new ItemGeneric("rubber_band");
-            RESIN_BOWL = new ItemGeneric("resin_bowl");
-            DRY_RESIN_BOWL = new ItemGeneric("dry_resin_bowl");
+            BOWL_RESIN = new ItemGeneric("bowl_resin");
+            BOWL_RESIN_DRY = new ItemGeneric("bowl_resin_dry");
 
             items.forEach(event.getRegistry()::register);
             itemsWithoutModel.forEach(event.getRegistry()::register);

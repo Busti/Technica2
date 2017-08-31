@@ -1,6 +1,6 @@
 {
   "parent":"item/generated",
   "textures": {
-    "layer0":"technica:items/dry_resin_bowl"
+    "layer0":"technica:items/coil_copper"
   }
 }
