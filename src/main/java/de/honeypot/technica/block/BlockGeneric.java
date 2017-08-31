@@ -15,6 +15,7 @@ public class BlockGeneric extends Block {
         setRegistryName(name);
         setUnlocalizedName(name);
         ModBlocks.registerBlock(this);
+        setCreativeTab(Technica.CREATIVE_TAB_TECHNICA);
 
 
         ItemBlock item = new ItemBlock(this);

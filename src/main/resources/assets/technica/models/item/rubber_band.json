@@ -1,0 +1,6 @@
+{
+  "parent":"technica:item/basic",
+  "textures": {
+    "layer0":"technica:items/rubber_band"
+  }
+}

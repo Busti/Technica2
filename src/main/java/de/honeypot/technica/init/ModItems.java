@@ -25,6 +25,8 @@ public class ModItems {
     public static Item COPPER_COIL;
     public static Item ELECTRIC_ENGINE;
     public static Item COPPER_INGOT;
+    public static Item RUBBER;
+    public static Item RUBBER_BAND;
 
     private static boolean isFinished = false;
     private static ArrayList<Item> items = new ArrayList<Item>(20);
@@ -72,8 +74,10 @@ public class ModItems {
         public static void registerItems(final RegistryEvent.Register<Item> event) {
 
             COPPER_COIL     = new ItemGeneric("copper_coil");
-            COPPER_INGOT     = new ItemGeneric("copper_ingot");
+            COPPER_INGOT    = new ItemGeneric("copper_ingot");
             ELECTRIC_ENGINE = new ItemGeneric("electric_engine");
+            RUBBER          = new ItemGeneric("rubber");
+            RUBBER_BAND     = new ItemGeneric("rubber_band");
 
             isFinished = true;
 

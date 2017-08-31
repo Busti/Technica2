@@ -3,6 +3,7 @@ package de.honeypot.technica.init;
 import de.honeypot.technica.Technica;
 import de.honeypot.technica.block.BlockGeneric;
 import de.honeypot.technica.block.BlockOre;
+import de.honeypot.technica.block.BlockRubberLog;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.ItemModelMesher;
@@ -20,6 +21,7 @@ public class ModBlocks {
 
 
     public static Block COPPER_ORE;
+    public static Block RUBBER_LOG;
 
     private static boolean isFinished = false;
     private static ArrayList<Block> blocks = new ArrayList<Block>(20);
@@ -45,6 +47,7 @@ public class ModBlocks {
 
 
             COPPER_ORE = new BlockOre(Material.ROCK, "copper_ore");
+            RUBBER_LOG = new BlockRubberLog();
 
             isFinished = true;
 

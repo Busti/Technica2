@@ -1,5 +1,6 @@
 package de.honeypot.technica;
 
+import de.honeypot.technica.generation.TechnicaWorldGenerator;
 import de.honeypot.technica.init.ModBlocks;
 import de.honeypot.technica.init.ModItems;
 import net.minecraft.client.Minecraft;
@@ -33,6 +34,8 @@ public class Technica {
         initClient(mesher);
 
         setupFurnaceRecipes();
+
+        GameRegistry.registerWorldGenerator(new TechnicaWorldGenerator(), 0);
     }
 
 
@@ -45,5 +48,6 @@ public class Technica {
     private void setupFurnaceRecipes() {
 
         GameRegistry.addSmelting(ModBlocks.COPPER_ORE, new ItemStack(ModItems.COPPER_INGOT), 0.7f);
+        GameRegistry.addSmelting(ModBlocks.RUBBER_LOG, new ItemStack(ModItems.RUBBER, 2),0.8f);
     }
 }
