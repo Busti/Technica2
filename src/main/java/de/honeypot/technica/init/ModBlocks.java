@@ -1,9 +1,9 @@
 package de.honeypot.technica.init;
 
 import de.honeypot.technica.Technica;
-import de.honeypot.technica.block.BlockOre;
 import de.honeypot.technica.block.BlockRubberLog;
 import de.honeypot.technica.block.BlockRubberLogLiving;
+import de.honeypot.technica.block.BlockVariants;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.event.RegistryEvent;
@@ -15,12 +15,10 @@ import java.util.ArrayList;
 
 @GameRegistry.ObjectHolder(Technica.MODID)
 public class ModBlocks {
-    public static Block COPPER_ORE;
     public static Block RUBBER_LOG;
     public static Block RUBBER_LOG_LIVING;
     public static Block ORE_1;
 
-    private static boolean isFinished = false;
     private static ArrayList<Block> blocks = new ArrayList<Block>(20);
 
     public static void registerBlock(Block block) {
@@ -29,11 +27,13 @@ public class ModBlocks {
 
     @Mod.EventBusSubscriber(modid = Technica.MODID)
     public static class RegistrationHandler {
+
         @SubscribeEvent
         public static void registerBlocks(final RegistryEvent.Register<Block> event) {
-            COPPER_ORE          = new BlockOre(Material.ROCK, "copper_ore");
-            RUBBER_LOG          = new BlockRubberLog();
+            RUBBER_LOG = new BlockRubberLog();
             RUBBER_LOG_LIVING   = new BlockRubberLogLiving();
+            ORE_1 = new BlockVariants(Material.ROCK, "multi_ore", 1).setHardness(1.5f).setResistance(10);
+            ORE_1.setHarvestLevel("pickaxe", 1);RUBBER_LOG_LIVING   = new BlockRubberLogLiving();
 
             blocks.forEach(event.getRegistry()::register);
         }

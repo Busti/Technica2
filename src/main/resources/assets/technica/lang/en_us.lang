@@ -1,10 +1,12 @@
 itemGroup.Technica=Technica
 
-tile.copper_ore.name=Copper Ore
 tile.rubber_log.name=Rubber Wood
+tile.multi_ore.0.name=Copper Ore
 
 item.copper_coil.name=Copper Coil
 item.copper_ingot.name=Copper Ingot
 item.electric_engine.name=Electric Engine
 item.rubber.name=Rubber
 item.rubber_band.name=Rubber Band
+item.resin_bowl.name=Resin Bowl
+item.dry_resin_bowl.name=Dry Resin Bowl
