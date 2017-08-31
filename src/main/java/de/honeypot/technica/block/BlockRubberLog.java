@@ -8,23 +8,22 @@ import net.minecraft.block.BlockLog;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 /**
  * Created by Chloroplast on 31.08.2017.
  */
-public class BlockRubberLog extends Block {
+public class BlockRubberLog extends Block{
 
     public final static String RUBBER_LOG = "rubber_log";
-   // public static final PropertyEnum<BlockLog.EnumAxis> LOG_AXIS = PropertyEnum.<BlockLog.EnumAxis>create("axis", BlockLog.EnumAxis.class);
+    public final static PropertyEnum<BlockLog.EnumAxis> LOG_AXIS = PropertyEnum.<BlockLog.EnumAxis>create("axis", BlockLog.EnumAxis.class);
 
     public BlockRubberLog(){
 
@@ -46,6 +45,30 @@ public class BlockRubberLog extends Block {
         ModItems.registerItem(item);
     }
 
+    @Override
+    public BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, LOG_AXIS);
+    }
 
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        return state.getValue(LOG_AXIS).ordinal();
+    }
 
+    @Override
+    @SuppressWarnings("deprecation")
+    public IBlockState getStateFromMeta(int meta) {
+        return getDefaultState().withProperty(LOG_AXIS, BlockLog.EnumAxis.values()[meta]);
+    }
+
+    /**
+     * Called by ItemBlocks just before a block is actually set in the world, to allow for adjustments to the
+     * IBlockstate
+     */
+    @Override
+    @SuppressWarnings("deprecation")
+    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    {
+        return getStateFromMeta(meta).withProperty(LOG_AXIS, BlockLog.EnumAxis.fromFacingAxis(facing.getAxis()));
+    }
 }

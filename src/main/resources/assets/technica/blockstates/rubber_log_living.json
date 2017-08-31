@@ -1,0 +1,62 @@
+{
+  "variants": {
+
+    "dir=north,status=none":  {
+      "model": "technica:rubber_log"
+    },
+    "dir=east,status=none":  {
+      "model": "technica:rubber_log"
+    },
+    "dir=south,status=none":  {
+      "model": "technica:rubber_log"
+    },
+    "dir=west,status=none":  {
+      "model": "technica:rubber_log"
+    },
+    "dir=north,status=fresh": {
+      "model": "technica:rubber_log_fresh"
+    },
+    "dir=east,status=fresh": {
+      "y": 90,
+      "model": "technica:rubber_log_fresh"
+    },
+    "dir=south,status=fresh": {
+      "y": 180,
+      "model": "technica:rubber_log_fresh"
+    },
+    "dir=west,status=fresh": {
+      "y": 270,
+      "model": "technica:rubber_log_fresh"
+    },
+    "dir=north,status=ready": {
+      "model": "technica:rubber_log_ready"
+    },
+    "dir=east,status=ready": {
+      "y": 90,
+      "model": "technica:rubber_log_ready"
+    },
+    "dir=south,status=ready": {
+      "y": 180,
+      "model": "technica:rubber_log_ready"
+    },
+    "dir=west,status=ready": {
+      "y": 270,
+      "model": "technica:rubber_log_ready"
+    },
+    "dir=north,status=dry": {
+      "model": "technica:rubber_log_dry"
+    },
+    "dir=east,status=dry": {
+      "y": 90,
+      "model": "technica:rubber_log_dry"
+    },
+    "dir=south,status=dry": {
+      "y": 180,
+      "model": "technica:rubber_log_dry"
+    },
+    "dir=west,status=dry": {
+      "y": 270,
+      "model": "technica:rubber_log_dry"
+    }
+  }
+}
