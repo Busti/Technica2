@@ -3,6 +3,7 @@ package de.honeypot.technica.init;
 import de.honeypot.technica.Technica;
 import de.honeypot.technica.block.BlockOre;
 import de.honeypot.technica.block.BlockRubberLog;
+import de.honeypot.technica.block.BlockVariants;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.event.RegistryEvent;
@@ -18,7 +19,6 @@ public class ModBlocks {
     public static Block RUBBER_LOG;
     public static Block ORE_1;
 
-    private static boolean isFinished = false;
     private static ArrayList<Block> blocks = new ArrayList<Block>(20);
 
     public static void registerBlock(Block block) {
@@ -27,10 +27,12 @@ public class ModBlocks {
 
     @Mod.EventBusSubscriber(modid = Technica.MODID)
     public static class RegistrationHandler {
+
         @SubscribeEvent
         public static void registerBlocks(final RegistryEvent.Register<Block> event) {
             COPPER_ORE = new BlockOre(Material.ROCK, "copper_ore");
             RUBBER_LOG = new BlockRubberLog();
+            ORE_1 = new BlockVariants(Material.ROCK, "multi_ore");
 
             blocks.forEach(event.getRegistry()::register);
         }

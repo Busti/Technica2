@@ -1,5 +1,5 @@
 {
-  "parent":"technica:item/basic",
+  "parent":"item/generated",
   "textures": {
     "layer0":"technica:items/electric_engine"
   }

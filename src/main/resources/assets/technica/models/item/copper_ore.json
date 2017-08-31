@@ -1,5 +1,5 @@
 {
-  "parent":"technica:block/copper_ore",
+  "parent":"item/generated",
   "display": {
     "thirdperson": {
       "rotation": [ 10, -45, 170 ],
