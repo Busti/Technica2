@@ -16,15 +16,12 @@ import java.util.ArrayList;
 public class ModBlocks {
     public static Block COPPER_ORE;
     public static Block RUBBER_LOG;
+    public static Block ORE_1;
 
     private static boolean isFinished = false;
     private static ArrayList<Block> blocks = new ArrayList<Block>(20);
 
     public static void registerBlock(Block block) {
-        if (isFinished) {
-            throw new IllegalStateException("cant add blocks after finishing");
-        }
-
         blocks.add(block);
     }
 
@@ -34,8 +31,6 @@ public class ModBlocks {
         public static void registerBlocks(final RegistryEvent.Register<Block> event) {
             COPPER_ORE = new BlockOre(Material.ROCK, "copper_ore");
             RUBBER_LOG = new BlockRubberLog();
-
-            isFinished = true;
 
             blocks.forEach(event.getRegistry()::register);
         }
