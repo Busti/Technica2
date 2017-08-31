@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 @GameRegistry.ObjectHolder(Technica.MODID)
 public class ModBlocks {
-    public static Block COPPER_ORE;
     public static Block RUBBER_LOG;
     public static Block ORE_1;
 
