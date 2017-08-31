@@ -18,8 +18,11 @@ import net.minecraft.world.World;
 public class BlockVariants extends BlockGeneric {
     public static IProperty<Integer> VARIANT = PropertyInteger.create("variant", 0, 15);
 
-    public BlockVariants(Material material, String name) {
+    private final int subtypes;
+
+    public BlockVariants(Material material, String name, int subtypes) {
         super(material, name);
+        this.subtypes = subtypes;
     }
 
     @Override
@@ -45,7 +48,7 @@ public class BlockVariants extends BlockGeneric {
 
     @Override
     public void getSubBlocks(final CreativeTabs tab, final NonNullList<ItemStack> list) {
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < subtypes; i++) {
             list.add(new ItemStack(this, 1, i));
         }
     }
@@ -62,7 +65,6 @@ public class BlockVariants extends BlockGeneric {
 
     @Override
     public Item getBlockItem() {
-        Item item = new ItemMultiTexture(this, this, this::getName);
-        return item;
+        return new ItemMultiTexture(this, this, this::getName);
     }
 }

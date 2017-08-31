@@ -1,7 +1,6 @@
 package de.honeypot.technica.init;
 
 import de.honeypot.technica.Technica;
-import de.honeypot.technica.block.BlockOre;
 import de.honeypot.technica.block.BlockRubberLog;
 import de.honeypot.technica.block.BlockVariants;
 import net.minecraft.block.Block;
@@ -30,9 +29,9 @@ public class ModBlocks {
 
         @SubscribeEvent
         public static void registerBlocks(final RegistryEvent.Register<Block> event) {
-            COPPER_ORE = new BlockOre(Material.ROCK, "copper_ore");
             RUBBER_LOG = new BlockRubberLog();
-            ORE_1 = new BlockVariants(Material.ROCK, "multi_ore");
+            ORE_1 = new BlockVariants(Material.ROCK, "multi_ore", 1).setHardness(1.5f).setResistance(10);
+            ORE_1.setHarvestLevel("pickaxe", 1);
 
             blocks.forEach(event.getRegistry()::register);
         }
