@@ -25,23 +25,14 @@ public class ModItems {
     public static Item RUBBER;
     public static Item RUBBER_BAND;
 
-    private static boolean isFinished = false;
     private static ArrayList<Item> items = new ArrayList<Item>(20);
     private static ArrayList<Item> itemsWithoutModel = new ArrayList<Item>(20);
 
     public static void registerItem(Item item) {
-        if (isFinished) {
-            throw new IllegalStateException("cant add items after finishing");
-        }
-
         items.add(item);
     }
 
     public static void registerItemWithoutModel(Item item) {
-        if (isFinished) {
-            throw new IllegalStateException("cant add items after finishing");
-        }
-
         itemsWithoutModel.add(item);
     }
 
@@ -63,8 +54,6 @@ public class ModItems {
             ELECTRIC_ENGINE = new ItemGeneric("electric_engine");
             RUBBER = new ItemGeneric("rubber");
             RUBBER_BAND = new ItemGeneric("rubber_band");
-
-            isFinished = true;
 
             items.forEach(event.getRegistry()::register);
             itemsWithoutModel.forEach(event.getRegistry()::register);
