@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "technica:dry_resin_bowl"
+    }
+  ],
+  "result": {
+    "item": "technica:rubber",
+    "data": 0,
+    "count": 3
+  }
+}
