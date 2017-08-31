@@ -17,17 +17,18 @@ public class BlockGeneric extends Block {
         ModBlocks.registerBlock(this);
         setCreativeTab(Technica.CREATIVE_TAB_TECHNICA);
 
-
-        ItemBlock item = new ItemBlock(this);
-        item.setRegistryName(name);
-        item.setUnlocalizedName(name);
-        item.setCreativeTab(Technica.CREATIVE_TAB_TECHNICA);
-        ModItems.registerItem(item);
-
-
+        ModItems.registerItem(getBlockItem(name));
     }
 
     public BlockGeneric(final Material material, final String name) {
         this(material, material.getMaterialMapColor(), name);
+    }
+
+    public Item getBlockItem(String name) {
+        ItemBlock item = new ItemBlock(this);
+        item.setRegistryName(name);
+        item.setUnlocalizedName(name);
+        item.setCreativeTab(Technica.CREATIVE_TAB_TECHNICA);
+        return item;
     }
 }
