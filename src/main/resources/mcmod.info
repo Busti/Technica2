@@ -3,7 +3,7 @@
       "modid": "technica",
       "name": "Technica 2",
       "description": "A Mod about Belts!",
-      "version": "-1",
+      "version": "${version}",
       "mcversion": "${mcversion}",
       "url": "",
       "updateUrl": "",
