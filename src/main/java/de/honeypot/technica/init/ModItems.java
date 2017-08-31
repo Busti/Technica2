@@ -24,9 +24,11 @@ public class ModItems {
 
     public static Item COPPER_COIL;
     public static Item ELECTRIC_ENGINE;
+    public static Item COPPER_INGOT;
 
     private static boolean isFinished = false;
     private static ArrayList<Item> items = new ArrayList<Item>(20);
+    private static ArrayList<Item> itemsWithoutModel = new ArrayList<Item>(20);
 
 
 
@@ -38,6 +40,15 @@ public class ModItems {
 
         items.add(item);
 
+    }
+
+    public static void registerItemWithoutModel(Item item){
+
+        if(isFinished){
+            throw new IllegalStateException("cant add items after finishing");
+        }
+
+        itemsWithoutModel.add(item);
 
     }
 
@@ -61,11 +72,13 @@ public class ModItems {
         public static void registerItems(final RegistryEvent.Register<Item> event) {
 
             COPPER_COIL     = new ItemGeneric("copper_coil");
+            COPPER_INGOT     = new ItemGeneric("copper_ingot");
             ELECTRIC_ENGINE = new ItemGeneric("electric_engine");
 
             isFinished = true;
 
             items.forEach(  event.getRegistry()::register  );
+            itemsWithoutModel.forEach(  event.getRegistry()::register  );
 
         }
     }

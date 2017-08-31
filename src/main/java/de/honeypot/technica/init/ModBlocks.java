@@ -2,8 +2,12 @@ package de.honeypot.technica.init;
 
 import de.honeypot.technica.Technica;
 import de.honeypot.technica.block.BlockGeneric;
+import de.honeypot.technica.block.BlockOre;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.ItemModelMesher;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -40,7 +44,7 @@ public class ModBlocks {
 
 
 
-            COPPER_ORE = new BlockGeneric(Material.ROCK, "foo");
+            COPPER_ORE = new BlockOre(Material.ROCK, "copper_ore");
 
             isFinished = true;
 

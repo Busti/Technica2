@@ -1,11 +1,14 @@
 package de.honeypot.technica;
 
+import de.honeypot.technica.init.ModBlocks;
 import de.honeypot.technica.init.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemModelMesher;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -28,10 +31,19 @@ public class Technica {
 
         ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
         initClient(mesher);
+
+        setupFurnaceRecipes();
     }
+
+
 
     @SideOnly(Side.CLIENT)
     public static void initClient(ItemModelMesher mesher) {
         ModItems.registerModels(mesher);
+    }
+
+    private void setupFurnaceRecipes() {
+
+        GameRegistry.addSmelting(ModBlocks.COPPER_ORE, new ItemStack(ModItems.COPPER_INGOT), 0.7f);
     }
 }
