@@ -19,8 +19,10 @@ import java.util.ArrayList;
 
 @GameRegistry.ObjectHolder(Technica.MODID)
 public class ModItems {
-    public static Item COIL_COPPER;
     public static Item INGOT_COPPER;
+    public static Item WIRE_IRON;
+    public static Item WIRE_COPPER;
+    public static Item COIL_COPPER;
     public static Item ROD_IRON;
     public static Item ELECTRIC_ENGINE;
     public static Item RUBBER;
@@ -51,8 +53,10 @@ public class ModItems {
     public static class RegistrationHandler {
         @SubscribeEvent
         public static void registerItems(final RegistryEvent.Register<Item> event) {
-            COIL_COPPER = new ItemGeneric("coil_copper");
             INGOT_COPPER = new ItemGeneric("ingot_copper");
+            WIRE_IRON = new ItemGeneric("wire_iron");
+            WIRE_COPPER = new ItemGeneric("wire_copper");
+            COIL_COPPER = new ItemGeneric("coil_copper");
             ROD_IRON = new ItemGeneric("rod_iron");
             ELECTRIC_ENGINE = new ItemGeneric("electric_engine");
             RUBBER = new ItemGeneric("rubber");

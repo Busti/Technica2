@@ -4,8 +4,10 @@ tile.log_rubber.name=Rubber Wood (Dead)
 tile.log_rubber_living.name=Rubber Wood
 tile.multi_ore.0.name=Copper Ore
 
-item.coil_copper.name=Copper Coil
 item.ingot_copper.name=Copper Ingot
+item.wire_iron.name=Iron Wire
+item.wire_copper.name=Copper Wire
+item.coil_copper.name=Copper Coil
 item.rod_iron.name=Iron Rod
 item.electric_engine.name=Electric Engine
 item.rubber.name=Rubber
