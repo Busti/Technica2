@@ -1,11 +1,10 @@
 package de.honeypot.technica;
 
 import de.honeypot.technica.generation.TechnicaWorldGenerator;
-import de.honeypot.technica.init.ModBlocks;
 import de.honeypot.technica.init.ModItems;
+import de.honeypot.technica.init.ModRecipes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemModelMesher;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -33,23 +32,13 @@ public class Technica {
         ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
         initClient(mesher);
 
-        setupFurnaceRecipes();
+        ModRecipes.setupFurnaceRecipes();
 
         GameRegistry.registerWorldGenerator(new TechnicaWorldGenerator(), 0);
     }
 
-
-
     @SideOnly(Side.CLIENT)
     public static void initClient(ItemModelMesher mesher) {
         ModItems.registerModels(mesher);
-    }
-
-    private void setupFurnaceRecipes() {
-
-        GameRegistry.addSmelting(ModBlocks.COPPER_ORE, new ItemStack(ModItems.COPPER_INGOT), 0.7f);
-        GameRegistry.addSmelting(ModBlocks.RUBBER_LOG, new ItemStack(ModItems.RUBBER, 2),0.8f);
-        GameRegistry.addSmelting(new ItemStack(ModItems.RUBBER_BAND, 1), new ItemStack(ModItems.RUBBER, 1),0.8f);
-
     }
 }
