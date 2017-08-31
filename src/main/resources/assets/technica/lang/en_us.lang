@@ -6,6 +6,7 @@ tile.multi_ore.0.name=Copper Ore
 
 item.coil_copper.name=Copper Coil
 item.ingot_copper.name=Copper Ingot
+item.rod_iron.name=Iron Rod
 item.electric_engine.name=Electric Engine
 item.rubber.name=Rubber
 item.rubber_band.name=Rubber Band

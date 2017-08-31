@@ -21,6 +21,7 @@ import java.util.ArrayList;
 public class ModItems {
     public static Item COIL_COPPER;
     public static Item INGOT_COPPER;
+    public static Item ROD_IRON;
     public static Item ELECTRIC_ENGINE;
     public static Item RUBBER;
     public static Item RUBBER_BAND;
@@ -52,6 +53,7 @@ public class ModItems {
         public static void registerItems(final RegistryEvent.Register<Item> event) {
             COIL_COPPER = new ItemGeneric("coil_copper");
             INGOT_COPPER = new ItemGeneric("ingot_copper");
+            ROD_IRON = new ItemGeneric("rod_iron");
             ELECTRIC_ENGINE = new ItemGeneric("electric_engine");
             RUBBER = new ItemGeneric("rubber");
             RUBBER_BAND = new ItemGeneric("rubber_band");

@@ -1,15 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "###"
+    "#",
+    "#"
   ],
   "key": {
     "#": {
-      "item": "technica:rubber"
+      "item": "minecraft:iron_ingot"
     }
   },
   "result": {
-    "item": "technica:rubber_band",
-    "count": 2
+    "item": "technica:rod_iron",
+    "count": 4
   }
 }
