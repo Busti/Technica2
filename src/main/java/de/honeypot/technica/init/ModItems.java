@@ -24,6 +24,8 @@ public class ModItems {
     public static Item COPPER_INGOT;
     public static Item RUBBER;
     public static Item RUBBER_BAND;
+    public static Item RESIN_BOWL;
+    public static Item DRY_RESIN_BOWL;
 
     private static ArrayList<Item> items = new ArrayList<Item>(20);
     private static ArrayList<Item> itemsWithoutModel = new ArrayList<Item>(20);
@@ -44,7 +46,6 @@ public class ModItems {
         });
     }
 
-
     @Mod.EventBusSubscriber(modid = Technica.MODID)
     public static class RegistrationHandler {
         @SubscribeEvent
@@ -54,6 +55,8 @@ public class ModItems {
             ELECTRIC_ENGINE = new ItemGeneric("electric_engine");
             RUBBER = new ItemGeneric("rubber");
             RUBBER_BAND = new ItemGeneric("rubber_band");
+            RESIN_BOWL = new ItemGeneric("resin_bowl");
+            DRY_RESIN_BOWL = new ItemGeneric("dry_resin_bowl");
 
             items.forEach(event.getRegistry()::register);
             itemsWithoutModel.forEach(event.getRegistry()::register);
