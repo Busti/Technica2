@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class BlockVariants extends BlockGeneric {
+public class BlockVariants extends BlockBase {
     public static IProperty<Integer> VARIANT = PropertyInteger.create("variant", 0, 15);
 
     private final int subtypes;
