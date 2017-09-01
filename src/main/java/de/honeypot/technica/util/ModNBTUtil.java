@@ -13,10 +13,6 @@ public class ModNBTUtil {
 
     public static double getDamageFromItem(ItemStack stack){
 
-        System.out.println("\r\n##########\r\n");
-
-        System.out.println(stack.getAttributeModifiers(EntityEquipmentSlot.MAINHAND).keys().toString());
-
         Collection<AttributeModifier> attribs = stack.getAttributeModifiers(EntityEquipmentSlot.MAINHAND).get("generic.attackDamage");
 
         double sum      = attribs.stream().filter(a -> a.getOperation()==0).mapToDouble(a -> a.getAmount()).sum();
