@@ -20,6 +20,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -61,6 +62,7 @@ public class BlockLogRubberLiving extends Block {
         setSoundType(SoundType.WOOD);
         setTickRandomly(true);
 
+
         setRegistryName(RUBBER_LOG_LIVING);
         setUnlocalizedName(RUBBER_LOG_LIVING);
         ModBlocks.registerBlock(this);
@@ -72,6 +74,16 @@ public class BlockLogRubberLiving extends Block {
         item.setUnlocalizedName(RUBBER_LOG_LIVING);
         item.setCreativeTab(Technica.CREATIVE_TAB_TECHNICA);
         ModItems.registerItem(item);
+    }
+
+    @Override
+    public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
+        return true;
+    }
+
+    @Override
+    public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
+        return 20;
     }
 
     @Override
@@ -90,6 +102,11 @@ public class BlockLogRubberLiving extends Block {
         return getDefaultState()
                 .withProperty(LOG_DIRECTION, CUT_DIRECTION.values()[meta & 0x3])
                 .withProperty(LOG_STATUS,    CUT_STATUS.values()[meta >> 2]);
+    }
+
+    public boolean isWood(IBlockAccess world, BlockPos pos)
+    {
+        return true;
     }
 
     /**

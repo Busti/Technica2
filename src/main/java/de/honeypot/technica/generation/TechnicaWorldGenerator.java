@@ -18,15 +18,18 @@ import java.util.Random;
  */
 public class TechnicaWorldGenerator implements IWorldGenerator {
     private WorldGenerator copperOreGenerator;
+    private WorldGenTreeRubber rubberTreeGenerator;
 
     public TechnicaWorldGenerator() {
         copperOreGenerator = new WorldGenMinable(ModBlocks.ORE_1.getDefaultState().withProperty(BlockVariants.VARIANT, 0), 8);
+        rubberTreeGenerator = new WorldGenTreeRubber();
     }
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         if (world.provider.getDimensionType() == DimensionType.OVERWORLD) {
             runGenerator(copperOreGenerator, world, random, chunkX, chunkZ, 20, 30, 64);
+            runGenerator(rubberTreeGenerator, world, random, chunkX, chunkZ, 4, 10, 20);
         }
     }
 

@@ -1,5 +1,6 @@
 {
   "variants": {
-    "normal": { "model": "technica:leaves" }
+    "decayable=true": { "model": "technica:leaves_rubber" },
+    "decayable=false": { "model": "technica:leaves_rubber" }
   }
 }

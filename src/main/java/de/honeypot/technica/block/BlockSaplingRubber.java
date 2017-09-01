@@ -1,6 +1,7 @@
 package de.honeypot.technica.block;
 
 import de.honeypot.technica.Technica;
+import de.honeypot.technica.generation.WorldGenTreeRubber;
 import de.honeypot.technica.init.ModBlocks;
 import de.honeypot.technica.init.ModItems;
 import net.minecraft.block.BlockBush;
@@ -9,7 +10,9 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -53,8 +56,7 @@ public class BlockSaplingRubber extends BlockBush implements IGrowable {
 
     public void grow(World worldIn, BlockPos pos, IBlockState state, Random rand) {
 
-        if ((state.getValue(STAGE)).intValue() == 0)
-        {
+        if ((state.getValue(STAGE)).intValue() == 0) {
             worldIn.setBlockState(pos, state.cycleProperty(STAGE), 4);
         } else {
             generateTree(worldIn, pos, state, rand);
@@ -63,8 +65,7 @@ public class BlockSaplingRubber extends BlockBush implements IGrowable {
 
     public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) {
 
-        //TODO implement rubber tree generating
-        worldIn.setBlockState(pos, ModBlocks.LOG_RUBBER_LIVING.getDefaultState(), 10);
+        WorldGenTreeRubber.genTree(worldIn, rand, pos);
 
     }
 
@@ -104,5 +105,15 @@ public class BlockSaplingRubber extends BlockBush implements IGrowable {
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, STAGE);
+    }
+
+    @Override
+    public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
+        return true;
+    }
+
+    @Override
+    public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
+        return 20;
     }
 }

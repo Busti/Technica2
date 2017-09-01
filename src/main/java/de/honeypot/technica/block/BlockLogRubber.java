@@ -15,6 +15,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 /**
@@ -44,6 +45,17 @@ public class BlockLogRubber extends Block{
         item.setCreativeTab(Technica.CREATIVE_TAB_TECHNICA);
         ModItems.registerItem(item);
     }
+
+    @Override
+    public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
+        return true;
+    }
+
+    @Override
+    public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
+        return 20;
+    }
+
 
     @Override
     public BlockStateContainer createBlockState() {
