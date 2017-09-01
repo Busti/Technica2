@@ -101,10 +101,11 @@ public class WorldGenTreeRubber extends WorldGenerator{
         Biome biome = world.getBiome(pos);
 
         if(biome.equals(Biomes.FOREST) || biome.equals(Biomes.PLAINS)){
-            if(world.getBlockState(pos).getBlock() == Blocks.GRASS){
+            if(rand.nextInt(5) != 1) {
+            } else if(world.getBlockState(pos).getBlock() == Blocks.GRASS){
                 genTree(world, rand, pos.up(), false);
                 return true;
-            }else if(world.getBlockState(pos).getMaterial().isReplaceable()){
+            } else if(world.getBlockState(pos).getMaterial().isReplaceable()){
                 genTree(world, rand, pos, false);
                 return true;
             }
