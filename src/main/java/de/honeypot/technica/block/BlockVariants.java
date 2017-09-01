@@ -18,11 +18,13 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class BlockVariants<T extends Enum<T> & IEnumVariants & IStringSerializable> extends BlockBase {
-    public final IProperty<T> VARIANT;
+    public final T defaultStateEnumValue;
+    public final IProperty<Enum<T>> VARIANT;
 
-    public BlockVariants(Material material, String name, Class<T> clazz) {
+    public BlockVariants(Material material, String name, T defaultStateEnumValue) {
         super(material, name);
-        VARIANT = PropertyEnum.create("variant", clazz);
+        this.defaultStateEnumValue = defaultStateEnumValue;
+        VARIANT = PropertyEnum.create("variant", defaultStateEnumValue.getDeclaringClass());
     }
 
     @Override
@@ -34,8 +36,7 @@ public class BlockVariants<T extends Enum<T> & IEnumVariants & IStringSerializab
     @Override
     public IBlockState getStateFromMeta(final int meta) {
         Class<T> val = VARIANT.getValueClass();
-        Object foo = val::new;
-        return getDefaultState().withProperty(VARIANT, );
+        return getDefaultState().withProperty(VARIANT, defaultStateEnumValue.byMetadata(meta));
     }
 
     @Override
