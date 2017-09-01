@@ -2,27 +2,27 @@ package de.honeypot.technica.block;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemMultiTexture;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class BlockVariants extends BlockBase {
-    public static IProperty<Integer> VARIANT = PropertyInteger.create("variant", 0, 15);
+public class BlockVariants<T extends Enum<T> & IEnumVariants & IStringSerializable> extends BlockBase {
+    public final IProperty<T> VARIANT;
 
-    private final int subtypes;
-
-    public BlockVariants(Material material, String name, int subtypes) {
+    public BlockVariants(Material material, String name, Class<T> clazz) {
         super(material, name);
-        this.subtypes = subtypes;
+        VARIANT = PropertyEnum.create("variant", clazz);
     }
 
     @Override
@@ -33,7 +33,9 @@ public class BlockVariants extends BlockBase {
     @SuppressWarnings("deprecation")
     @Override
     public IBlockState getStateFromMeta(final int meta) {
-        return getDefaultState().withProperty(VARIANT, meta);
+        Class<T> val = VARIANT.getValueClass();
+        Object foo = val::new;
+        return getDefaultState().withProperty(VARIANT, );
     }
 
     @Override
