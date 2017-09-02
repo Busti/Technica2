@@ -10,8 +10,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 
-public class BlockGeneric extends Block {
-    public BlockGeneric(Material material, MapColor mapColor, String name) {
+public class BlockBase extends Block {
+    public BlockBase(Material material, MapColor mapColor, String name) {
         super(material, mapColor);
         setRegistryName(name);
         setUnlocalizedName(name);
@@ -23,7 +23,7 @@ public class BlockGeneric extends Block {
             ModItems.registerItem(item);
     }
 
-    public BlockGeneric(Material material, String name) {
+    public BlockBase(Material material, String name) {
         this(material, material.getMaterialMapColor(), name);
     }
 
