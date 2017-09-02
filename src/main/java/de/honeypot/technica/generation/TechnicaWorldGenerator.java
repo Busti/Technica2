@@ -1,6 +1,6 @@
 package de.honeypot.technica.generation;
 
-import de.honeypot.technica.block.BlockVariants;
+import de.honeypot.technica.block.BlockOre;
 import de.honeypot.technica.init.ModBlocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
@@ -20,7 +20,7 @@ public class TechnicaWorldGenerator implements IWorldGenerator {
     private WorldGenerator copperOreGenerator;
 
     public TechnicaWorldGenerator() {
-        copperOreGenerator = new WorldGenMinable(ModBlocks.ORE_1.getDefaultState().withProperty(BlockVariants.VARIANT, 0), 8);
+        copperOreGenerator = new WorldGenMinable(ModBlocks.ORE.getDefaultState().withProperty(ModBlocks.ORE.VARIANT, BlockOre.Type.COPPER), 8);
     }
 
     @Override
