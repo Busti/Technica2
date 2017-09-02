@@ -4,12 +4,15 @@ import de.honeypot.technica.Technica;
 import de.honeypot.technica.init.ModBlocks;
 import de.honeypot.technica.init.ModItems;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -93,10 +96,26 @@ public class BlockLeavesRubber extends Block implements IShearable {
     }
 
 
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return Blocks.LEAVES.isOpaqueCube(state);
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
-    public BlockRenderLayer getBlockLayer() {
-        return leavesFancy ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
+    public BlockRenderLayer getBlockLayer()
+    {
+        return Blocks.LEAVES.getBlockLayer();
+    }
+
+    @Override
+    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
+    {
+        // isOpaqueCube returns !leavesFancy to us. We have to fix the variable before calling super
+        this.leavesFancy = Blocks.LEAVES.isOpaqueCube(blockState);
+
+        return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
     }
 
     @Override
