@@ -3,6 +3,7 @@ package de.honeypot.technica.generation;
 import de.honeypot.technica.block.BlockLeavesRubber;
 import de.honeypot.technica.block.BlockLogRubberLiving;
 import de.honeypot.technica.init.ModBlocks;
+import de.honeypot.technica.util.ModEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
@@ -44,7 +45,7 @@ public class WorldGenTreeRubber extends WorldGenerator{
 
             worldIn.setBlockState(otherPos,
                     ModBlocks.LOG_RUBBER_LIVING.getDefaultState()
-                            .withProperty(BlockLogRubberLiving.LOG_DIRECTION, BlockLogRubberLiving.CUT_DIRECTION.NORTH)
+                            .withProperty(BlockLogRubberLiving.LOG_DIRECTION, ModEnum.ENUM_DIRECTION.NORTH)
                             .withProperty(BlockLogRubberLiving.LOG_STATUS, BlockLogRubberLiving.CUT_STATUS.NONE), flag);
         }
 
