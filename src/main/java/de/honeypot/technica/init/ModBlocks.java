@@ -32,7 +32,6 @@ public class ModBlocks {
         public static void registerBlocks(final RegistryEvent.Register<Block> event) {
             LOG_RUBBER = new BlockLogRubber();
             LOG_RUBBER_LIVING = new BlockLogRubberLiving();
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             ORE = new BlockOre(Material.ROCK, "ore");
 
             blocks.forEach(event.getRegistry()::register);
