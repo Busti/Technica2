@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "variant=copper": {"model": "technica:ore_copper" }
+  }
+}
