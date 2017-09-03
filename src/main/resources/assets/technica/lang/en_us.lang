@@ -2,7 +2,7 @@ itemGroup.Technica=Technica
 
 tile.log_rubber.name=Rubber Wood (Dead)
 tile.log_rubber_living.name=Rubber Wood
-tile.multi_ore.0.name=Copper Ore
+tile.ore.copper.name=Copper Ore
 
 item.ingot_copper.name=Copper Ingot
 item.wire_iron.name=Iron Wire

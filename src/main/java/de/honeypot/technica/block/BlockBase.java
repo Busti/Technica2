@@ -5,14 +5,13 @@ import de.honeypot.technica.init.ModBlocks;
 import de.honeypot.technica.init.ModItems;
 import jline.internal.Nullable;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 
 public class BlockBase extends Block {
-    public BlockBase(Material material, MapColor mapColor, String name) {
-        super(material, mapColor);
+    public BlockBase(Material material, String name) {
+        super(material);
         setRegistryName(name);
         setUnlocalizedName(name);
         ModBlocks.registerBlock(this);
@@ -21,10 +20,6 @@ public class BlockBase extends Block {
         Item item = generateBlockItem(name);
         if (item != null)
             ModItems.registerItem(item);
-    }
-
-    public BlockBase(Material material, String name) {
-        this(material, material.getMaterialMapColor(), name);
     }
 
     /**

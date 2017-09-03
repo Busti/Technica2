@@ -10,7 +10,6 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
 
@@ -72,11 +71,11 @@ public class ModItems {
         public static void onPreInit() {
             Technica.logger.debug("Registering ore-dictionary entries.");
 
-            OreDictionary.registerOre("ingotCopper", INGOT_COPPER);
+            /*OreDictionary.registerOre("ingotCopper", INGOT_COPPER);
             OreDictionary.registerOre("wireIron", WIRE_IRON);
             OreDictionary.registerOre("wireCopper", WIRE_COPPER);
             OreDictionary.registerOre("rodIron", ROD_IRON);
-            OreDictionary.registerOre("rubber", RUBBER);
+            OreDictionary.registerOre("rubber", RUBBER);*/
         }
     }
 }

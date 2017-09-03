@@ -20,7 +20,7 @@ public class TechnicaWorldGenerator implements IWorldGenerator {
     private WorldGenerator copperOreGenerator;
 
     public TechnicaWorldGenerator() {
-        copperOreGenerator = new WorldGenMinable(ModBlocks.ORE.getDefaultState().withProperty(ModBlocks.ORE.VARIANT, BlockOre.Type.COPPER), 8);
+        copperOreGenerator = new WorldGenMinable(ModBlocks.ORE.getDefaultState().withProperty(ModBlocks.ORE.propVariant, BlockOre.Type.COPPER), 8);
     }
 
     @Override
