@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "level=0": { "model": "technica:resin_still" },
+    "level=1": { "model": "technica:resin_still" },
+    "level=2": { "model": "technica:resin_still" },
+    "level=3": { "model": "technica:resin_still" },
+    "level=4": { "model": "technica:resin_still" },
+    "level=5": { "model": "technica:resin_still" },
+    "level=6": { "model": "technica:resin_still" },
+    "level=7": { "model": "technica:resin_still" }
+  }
+}
