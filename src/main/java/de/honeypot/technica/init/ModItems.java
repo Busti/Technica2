@@ -1,7 +1,7 @@
 package de.honeypot.technica.init;
 
 import de.honeypot.technica.Technica;
-import de.honeypot.technica.item.ItemGeneric;
+import de.honeypot.technica.item.ItemBase;
 import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -53,16 +53,16 @@ public class ModItems {
     public static class RegistrationHandler {
         @SubscribeEvent
         public static void registerItems(final RegistryEvent.Register<Item> event) {
-            INGOT_COPPER = new ItemGeneric("ingot_copper");
-            WIRE_IRON = new ItemGeneric("wire_iron");
-            WIRE_COPPER = new ItemGeneric("wire_copper");
-            COIL_COPPER = new ItemGeneric("coil_copper");
-            ROD_IRON = new ItemGeneric("rod_iron");
-            ELECTRIC_ENGINE = new ItemGeneric("electric_engine");
-            RUBBER = new ItemGeneric("rubber");
-            RUBBER_BAND = new ItemGeneric("rubber_band");
-            BOWL_RESIN = new ItemGeneric("bowl_resin");
-            BOWL_RESIN_DRY = new ItemGeneric("bowl_resin_dry");
+            INGOT_COPPER = new ItemBase("ingot_copper");
+            WIRE_IRON = new ItemBase("wire_iron");
+            WIRE_COPPER = new ItemBase("wire_copper");
+            COIL_COPPER = new ItemBase("coil_copper");
+            ROD_IRON = new ItemBase("rod_iron");
+            ELECTRIC_ENGINE = new ItemBase("electric_engine");
+            RUBBER = new ItemBase("rubber");
+            RUBBER_BAND = new ItemBase("rubber_band");
+            BOWL_RESIN = new ItemBase("bowl_resin");
+            BOWL_RESIN_DRY = new ItemBase("bowl_resin_dry");
 
             items.forEach(event.getRegistry()::register);
             itemsWithoutModel.forEach(event.getRegistry()::register);

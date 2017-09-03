@@ -9,9 +9,9 @@ import net.minecraft.item.Item;
  *
  */
 
-public class ItemGeneric extends Item {
+public class ItemBase extends Item {
 
-    public ItemGeneric(String name){
+    public ItemBase(String name){
         this.setRegistryName(name);
         this.setUnlocalizedName(name);
 
