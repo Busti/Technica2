@@ -5,8 +5,6 @@ import de.honeypot.technica.init.ModBlocks;
 import de.honeypot.technica.init.ModItems;
 import de.honeypot.technica.util.ModEnum;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
-import net.minecraft.block.BlockLog;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -21,6 +19,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -30,37 +29,48 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by Chloroplast on 02.09.2017.
  */
-public class BlockHookRubber extends Block {
+public class BlockTreeTap extends Block {
 
-    public final static String HOOK_RUBBER = "hook_rubber";
-    //protected static final AxisAlignedBB BOUNDS = new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D);
+    public final static String TREE_TAP = "tree_tap";
+    protected static final AxisAlignedBB BOUNDS_NORTH = new AxisAlignedBB(0.4375, 0.5625, 0,     0.5625, 0.8125, 0.375);
+    protected static final AxisAlignedBB BOUNDS_EAST  = new AxisAlignedBB(0.625,  0.5625, 0.4375,1,      0.8125, 0.5625);
+    protected static final AxisAlignedBB BOUNDS_SOUTH = new AxisAlignedBB(0.4375, 0.5625, 0.625, 0.5625, 0.8125, 1);
+    protected static final AxisAlignedBB BOUNDS_WEST  = new AxisAlignedBB(0,      0.5625, 0.4375,0.375,  0.8125, 0.5625);
 
 
     public final static PropertyEnum<ModEnum.ENUM_DIRECTION> BLOCK_DIR = PropertyEnum.<ModEnum.ENUM_DIRECTION>create("dir", ModEnum.ENUM_DIRECTION.class);
 
-    public BlockHookRubber() {
+    public BlockTreeTap() {
         super(Material.CIRCUITS);
 
         this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
         this.setHardness(2.0F);
         this.setSoundType(SoundType.WOOD);
 
-        setRegistryName(HOOK_RUBBER);
-        setUnlocalizedName(HOOK_RUBBER);
+        setRegistryName(TREE_TAP);
+        setUnlocalizedName(TREE_TAP);
         ModBlocks.registerBlock(this);
         setCreativeTab(Technica.CREATIVE_TAB_TECHNICA);
 
 
         ItemBlock item = new ItemBlock(this);
-        item.setRegistryName(HOOK_RUBBER);
-        item.setUnlocalizedName(HOOK_RUBBER);
+        item.setRegistryName(TREE_TAP);
+        item.setUnlocalizedName(TREE_TAP);
         item.setCreativeTab(Technica.CREATIVE_TAB_TECHNICA);
         ModItems.registerItem(item);
     }
 
-    /*public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return BOUNDS;
-    }*/
+    @Override
+    @SuppressWarnings("deprecation")
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        switch(state.getValue(BLOCK_DIR)){
+            case NORTH: return BOUNDS_NORTH;
+            case EAST:  return BOUNDS_EAST;
+            case SOUTH: return BOUNDS_SOUTH;
+            case WEST:  return BOUNDS_WEST;
+        }
+        return null;
+    }
 
     @Override
     public int getMetaFromState(IBlockState state) {
@@ -195,7 +205,6 @@ public class BlockHookRubber extends Block {
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
 
         BlockPos aim = null;
-        ModEnum.ENUM_DIRECTION dir = null;
 
         switch(state.getValue(BLOCK_DIR)){
             case NORTH: aim = pos.north(); break;

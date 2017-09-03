@@ -1,6 +1,7 @@
 package de.honeypot.technica.init;
 
 import de.honeypot.technica.Technica;
+import de.honeypot.technica.item.ItemBucketResin;
 import de.honeypot.technica.item.ItemGeneric;
 import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -12,7 +13,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * @author Chloroplast
@@ -30,21 +31,21 @@ public class ModItems {
     public static Item RUBBER_BAND;
     public static Item BOWL_RESIN;
     public static Item BOWL_RESIN_DRY;
+    public static Item BUCKET_RESIN;
 
-    private static ArrayList<Item> items = new ArrayList<Item>(20);
-    private static ArrayList<Item> itemsWithoutModel = new ArrayList<Item>(20);
+    private static HashMap<Item, String> items = new HashMap<Item, String>();
 
     public static void registerItem(Item item) {
-        items.add(item);
+        registerItem(item, item.getRegistryName().toString());
+    }
+    public static void registerItem(Item item, String model) {
+        items.put(item, model);
     }
 
-    public static void registerItemWithoutModel(Item item) {
-        itemsWithoutModel.add(item);
-    }
 
     public static void registerModels(ItemModelMesher mesher) {
-        items.forEach(item -> {
-            ModelResourceLocation model = new ModelResourceLocation(item.getRegistryName(), "inventory");
+        items.forEach( (item, name) -> {
+            ModelResourceLocation model = new ModelResourceLocation(name, "inventory");
             ModelLoader.registerItemVariants(item, model);
             mesher.register(item, 0, model);
         });
@@ -64,9 +65,9 @@ public class ModItems {
             RUBBER_BAND = new ItemGeneric("rubber_band");
             BOWL_RESIN = new ItemGeneric("bowl_resin");
             BOWL_RESIN_DRY = new ItemGeneric("bowl_resin_dry");
+            BUCKET_RESIN = new ItemBucketResin();
 
-            items.forEach(event.getRegistry()::register);
-            itemsWithoutModel.forEach(event.getRegistry()::register);
+            items.keySet().forEach(event.getRegistry()::register);
         }
 
         public static void onPreInit() {

@@ -18,7 +18,7 @@ public class ModBlocks {
     public static BlockSaplingRubber    SAPLING_RUBBER;
     public static BlockLeavesRubber     LEAVES_RUBBER;
     public static BlockVariants         ORE_1;
-    public static BlockHookRubber       HOOK_RUBBER;
+    public static BlockTreeTap HOOK_RUBBER;
 
     private static ArrayList<Block> blocks = new ArrayList<Block>(20);
 
@@ -37,7 +37,7 @@ public class ModBlocks {
             LEAVES_RUBBER = new BlockLeavesRubber();
             ORE_1 = new BlockVariants(Material.ROCK, "multi_ore", 1);
             ORE_1.setHardness(1.5f).setResistance(10).setHarvestLevel("pickaxe", 1);
-            HOOK_RUBBER = new BlockHookRubber();
+            HOOK_RUBBER = new BlockTreeTap();
 
             blocks.forEach(event.getRegistry()::register);
         }

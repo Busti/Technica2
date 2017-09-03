@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "dir=north": { "model": "technica:tree_tap" },
+    "dir=east":  { "model": "technica:tree_tap", "y": 90 },
+    "dir=south": { "model": "technica:tree_tap", "y": 180 },
+    "dir=west":  { "model": "technica:tree_tap", "y": 270 }
+  }
+}

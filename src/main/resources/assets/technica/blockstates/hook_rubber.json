@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "dir=north": { "model": "technica:hook_rubber" },
-    "dir=east": { "model": "technica:hook_rubber", "y": 90 },
-    "dir=south": { "model": "technica:hook_rubber", "y": 180 },
-    "dir=west": { "model": "technica:hook_rubber", "y": 270 }
-  }
-}
