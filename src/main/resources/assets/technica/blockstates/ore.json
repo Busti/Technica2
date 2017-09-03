@@ -1,5 +1,13 @@
 {
   "variants": {
-    "variant=copper": {"model": "technica:ore_copper" }
+    "variant=copper": {
+      "model": "technica:ore_copper"
+    },
+    "variant=aluminium": {
+      "model": "technica:ore_aluminium"
+    },
+    "variant=lead": {
+      "model": "technica:ore_lead"
+    }
   }
 }

@@ -14,7 +14,9 @@ public class BlockOre extends BlockVariants<BlockOre.Type> {
     }
 
     public enum Type implements IStringSerializable {
-        COPPER("copper", 1);
+        COPPER("copper", 1),
+        ALUMINIUM("aluminium", 1),
+        LEAD("lead", 2);
 
         private final String name;
         private final int level;
