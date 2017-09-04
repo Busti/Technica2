@@ -19,8 +19,8 @@
       },
       "none": {
         "textures": {
-          "end": "technica:blocks/log_rubber_bottom",
-          "side": "technica:blocks/log_rubber_bottom"
+          "end": "technica:blocks/log_rubber_end",
+          "side": "technica:blocks/log_rubber_end"
         }
       }
     },

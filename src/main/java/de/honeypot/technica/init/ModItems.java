@@ -37,7 +37,7 @@ public class ModItems {
     public static Item BUCKET_RESIN;
 
     private static List<IItemRegistrator> registrators = new ArrayList<>();
-    private static HashMap<Item, String> items = new HashMap<Item, String>();
+    private static List<Item> items = new ArrayList<Item>();
 
     /**
      * Marks an IItemRegistrator for registry.
@@ -55,28 +55,16 @@ public class ModItems {
      * @param item The Item that will be registered.
      */
     public static void registerItem(Item item) {
-        registerItem(item, item.getRegistryName().toString());
-    }
-    public static void registerItem(Item item, String model) {
-        items.put(item, model);
+        items.add(item);
     }
 
     /**
      * @return A list of all items that have been registered.
      */
-    public static Set<Item> getItems() {
-        return items.keySet();
+    public static List<Item> getItems() {
+        return items;
     }
 
-
-
-    public static void registerModels(ItemModelMesher mesher) {
-        items.forEach( (item, name) -> {
-            ModelResourceLocation model = new ModelResourceLocation(name, "inventory");
-            ModelLoader.registerItemVariants(item, model);
-            mesher.register(item, 0, model);
-        });
-    }
 
     @Mod.EventBusSubscriber(modid = Technica.MODID)
     public static class RegistrationHandler {
@@ -94,8 +82,8 @@ public class ModItems {
             BOWL_RESIN_DRY = new ItemBase("bowl_resin_dry");
             BUCKET_RESIN = new ItemBase("bucket_resin");
 
-            items.addAll(registrators.stream().map(IItemRegistrator::registerItem).collect(Collectors.toList()));
-            items.keySet().forEach(event.getRegistry()::register);
+            registrators.stream().map(IItemRegistrator::registerItem).forEach(items::add);
+            items.forEach(event.getRegistry()::register);
         }
 
         public static void onPreInit() {
