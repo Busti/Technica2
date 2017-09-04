@@ -9,6 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
@@ -16,20 +17,19 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -59,6 +59,7 @@ public class BlockTreeTap extends BlockContainer {
 
     public final static PropertyEnum<ModEnum.ENUM_DIRECTION> BLOCK_DIR = PropertyEnum.<ModEnum.ENUM_DIRECTION>create("dir", ModEnum.ENUM_DIRECTION.class);
     public final static PropertyEnum<ENUM_STATE> BLOCK_STATE = PropertyEnum.create("stat", ENUM_STATE.class);
+    public final static PropertyBool BLOCK_POWER = PropertyBool.create("powered");
 
     public BlockTreeTap() {
         super(Material.CIRCUITS);
@@ -79,6 +80,13 @@ public class BlockTreeTap extends BlockContainer {
         item.setUnlocalizedName(TREE_TAP);
         item.setCreativeTab(Technica.CREATIVE_TAB_TECHNICA);
         ModItems.registerItem(item);
+
+        setDefaultState(getDefaultState()
+                .withProperty(BLOCK_DIR, ModEnum.ENUM_DIRECTION.SOUTH)
+                .withProperty(BLOCK_STATE, ENUM_STATE.NONE)
+                .withProperty(BLOCK_POWER, false));
+
+        GameRegistry.registerTileEntity(TileEntityTreeTap.class, "tree_trap");
     }
 
     @Nullable
@@ -146,7 +154,7 @@ public class BlockTreeTap extends BlockContainer {
 
     @Override
     public BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, BLOCK_STATE, BLOCK_DIR);
+        return new BlockStateContainer(this, BLOCK_STATE, BLOCK_DIR, BLOCK_POWER);
     }
 
     @Override
@@ -240,6 +248,7 @@ public class BlockTreeTap extends BlockContainer {
     }
 
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+        dropContent(worldIn, pos);
 
         BlockPos aim = null;
 
@@ -254,8 +263,7 @@ public class BlockTreeTap extends BlockContainer {
             return;
         }
 
-        TileEntityTreeTap te = (TileEntityTreeTap) worldIn.getTileEntity(pos);
-        InventoryHelper.dropInventoryItems(worldIn, pos, te);
+
 
         worldIn.setBlockState(aim,
                 ModBlocks.LOG_RUBBER_LIVING.getDefaultState()
@@ -285,18 +293,6 @@ public class BlockTreeTap extends BlockContainer {
         return 2;
     }
 
-    /**
-     * Called from rubberLog if this Block is connected to it
-     */
-    public void dropFromMissingSource(World worldIn, IBlockState state, BlockPos pos){
-
-        TileEntityTreeTap te = (TileEntityTreeTap) worldIn.getTileEntity(pos);
-        InventoryHelper.dropInventoryItems(worldIn, pos, te);
-
-        worldIn.spawnEntity(new EntityItem(worldIn, pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, new ItemStack(Item.getItemFromBlock(ModBlocks.TREE_TAP))));
-        worldIn.setBlockToAir(pos);
-    }
-
     @Override
     public void randomTick(World worldIn, BlockPos pos, IBlockState state, Random random) {
 
@@ -304,11 +300,91 @@ public class BlockTreeTap extends BlockContainer {
             TileEntityTreeTap te = (TileEntityTreeTap) worldIn.getTileEntity(pos);
             ++te.load;
 
-            if(te.load >= MAX_LOAD){
+            if(te.load > MAX_LOAD){
                 te.load = 0;
                 te.setInventorySlotContents(0, new ItemStack(ModItems.BUCKET_RESIN, 1));
                 worldIn.setBlockState(pos, state.withProperty(BLOCK_STATE, ENUM_STATE.RESIN), 10);
             }
         }
     }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
+
+        boolean blockIsPowered = worldIn.isBlockIndirectlyGettingPowered(pos) > 0;
+
+        if(blockIsPowered != state.getValue(BLOCK_POWER)){
+
+            if(blockIsPowered){
+                worldIn.scheduleUpdate(pos, this, this.tickRate(worldIn));
+            }
+            worldIn.setBlockState(pos, state.withProperty(BLOCK_POWER, blockIsPowered), 4);
+
+        }
+    }
+
+    @Override
+    public int tickRate(World worldIn)
+    {
+        return 4;
+    }
+
+    @Override
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+
+        if(state.getValue(BLOCK_POWER)){
+            dropContent(worldIn, pos);
+        }
+
+    }
+
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if(playerIn.isSpectator()){
+            return false;
+        }
+
+        ItemStack stackInHand = playerIn.getHeldItem(hand);
+
+        ENUM_STATE content = state.getValue(BLOCK_STATE);
+        TileEntityTreeTap te = (TileEntityTreeTap) worldIn.getTileEntity(pos);
+
+        if(content == ENUM_STATE.NONE){
+            if(stackInHand.getItem() == Items.BUCKET){
+
+                te.setInventorySlotContents(0, stackInHand.splitStack(1));
+                return true;
+            }
+        }else if(!worldIn.isRemote){
+            boolean canGive = playerIn.addItemStackToInventory(te.getContent());
+
+            if(!canGive){
+                worldIn.spawnEntity(new EntityItem(worldIn, playerIn.posX, playerIn.posY + playerIn.eyeHeight, playerIn.posZ, te.getContent()));
+            }
+
+            te.setInventorySlotContents(0, ItemStack.EMPTY);
+
+        }
+
+        return false;
+    }
+
+    /**
+     * Called from rubberLog if this Block is connected to it
+     */
+    public void dropFromMissingSource(World worldIn, IBlockState state, BlockPos pos){
+
+        dropContent(worldIn, pos);
+
+        worldIn.spawnEntity(new EntityItem(worldIn, pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, new ItemStack(Item.getItemFromBlock(ModBlocks.TREE_TAP))));
+        worldIn.setBlockToAir(pos);
+    }
+
+    private void dropContent(World worldIn, BlockPos pos){
+        TileEntityTreeTap te = (TileEntityTreeTap) worldIn.getTileEntity(pos);
+        worldIn.spawnEntity(new EntityItem(worldIn, pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, te.getContent()));
+        te.setInventorySlotContents(0, ItemStack.EMPTY);
+    }
+
 }

@@ -1,19 +1,37 @@
 {
   "variants": {
-    "dir=north,stat=none":   { "model": "technica:tree_tap" },
-    "dir=north,stat=bucket": { "model": "technica:tree_tap_bucket" },
-    "dir=north,stat=resin":  { "model": "technica:tree_tap_resin" },
+    "dir=north,powered=false,stat=none":   { "model": "technica:tree_tap" },
+    "dir=north,powered=false,stat=bucket": { "model": "technica:tree_tap_bucket" },
+    "dir=north,powered=false,stat=resin":  { "model": "technica:tree_tap_resin" },
 
-    "dir=east,stat=none":    { "model": "technica:tree_tap",        "y": 90 },
-    "dir=east,stat=bucket":  { "model": "technica:tree_tap_bucket", "y": 90 },
-    "dir=east,stat=resin":   { "model": "technica:tree_tap_resin",  "y": 90 },
+    "dir=east,powered=false,stat=none":    { "model": "technica:tree_tap",        "y": 90 },
+    "dir=east,powered=false,stat=bucket":  { "model": "technica:tree_tap_bucket", "y": 90 },
+    "dir=east,powered=false,stat=resin":   { "model": "technica:tree_tap_resin",  "y": 90 },
 
-    "dir=south,stat=none":   { "model": "technica:tree_tap",        "y": 180 },
-    "dir=south,stat=bucket": { "model": "technica:tree_tap_bucket", "y": 180 },
-    "dir=south,stat=resin":  { "model": "technica:tree_tap_resin",  "y": 180 },
+    "dir=south,powered=false,stat=none":   { "model": "technica:tree_tap",        "y": 180 },
+    "dir=south,powered=false,stat=bucket": { "model": "technica:tree_tap_bucket", "y": 180 },
+    "dir=south,powered=false,stat=resin":  { "model": "technica:tree_tap_resin",  "y": 180 },
 
-    "dir=west,stat=none":    { "model": "technica:tree_tap",        "y": 270 },
-    "dir=west,stat=bucket":  { "model": "technica:tree_tap_bucket", "y": 270 },
-    "dir=west,stat=resin":   { "model": "technica:tree_tap_resin",  "y": 270 }
+    "dir=west,powered=false,stat=none":    { "model": "technica:tree_tap",        "y": 270 },
+    "dir=west,powered=false,stat=bucket":  { "model": "technica:tree_tap_bucket", "y": 270 },
+    "dir=west,powered=false,stat=resin":   { "model": "technica:tree_tap_resin",  "y": 270 },
+
+
+
+    "dir=north,powered=true,stat=none":   { "model": "technica:tree_tap" },
+    "dir=north,powered=true,stat=bucket": { "model": "technica:tree_tap_bucket" },
+    "dir=north,powered=true,stat=resin":  { "model": "technica:tree_tap_resin" },
+
+    "dir=east,powered=true,stat=none":    { "model": "technica:tree_tap",        "y": 90 },
+    "dir=east,powered=true,stat=bucket":  { "model": "technica:tree_tap_bucket", "y": 90 },
+    "dir=east,powered=true,stat=resin":   { "model": "technica:tree_tap_resin",  "y": 90 },
+
+    "dir=south,powered=true,stat=none":   { "model": "technica:tree_tap",        "y": 180 },
+    "dir=south,powered=true,stat=bucket": { "model": "technica:tree_tap_bucket", "y": 180 },
+    "dir=south,powered=true,stat=resin":  { "model": "technica:tree_tap_resin",  "y": 180 },
+
+    "dir=west,powered=true,stat=none":    { "model": "technica:tree_tap",        "y": 270 },
+    "dir=west,powered=true,stat=bucket":  { "model": "technica:tree_tap_bucket", "y": 270 },
+    "dir=west,powered=true,stat=resin":   { "model": "technica:tree_tap_resin",  "y": 270 }
   }
 }

@@ -3,6 +3,8 @@ package de.honeypot.technica.tileentity;
 import de.honeypot.technica.block.BlockTreeTap;
 import de.honeypot.technica.init.ModBlocks;
 import de.honeypot.technica.init.ModItems;
+import de.honeypot.technica.util.ModEnum;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
@@ -10,6 +12,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
@@ -19,14 +23,17 @@ public class TileEntityTreeTap extends TileEntity implements IInventory{
 
     private ItemStack content = ItemStack.EMPTY;
     private String customName;
-    private Item lastItem;
 
     public byte load = 0;
 
     public TileEntityTreeTap() {
-        GameRegistry.registerTileEntity(TileEntityTreeTap.class, "tree_trap");
+
     }
 
+    @Override
+    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate) {
+        return newSate.getBlock() != ModBlocks.TREE_TAP;
+    }
 
     public String getCustomName() {
         return this.customName;
@@ -79,7 +86,7 @@ public class TileEntityTreeTap extends TileEntity implements IInventory{
             ItemStack stack = content;
             this.setInventorySlotContents(index, ItemStack.EMPTY);
             this.markDirty();
-            updateBlockState();
+            renewState();
             return stack;
 
         } else {
@@ -91,7 +98,7 @@ public class TileEntityTreeTap extends TileEntity implements IInventory{
             }
 
             this.markDirty();
-            updateBlockState();
+            renewState();
             return stack;
         }
     }
@@ -103,7 +110,7 @@ public class TileEntityTreeTap extends TileEntity implements IInventory{
         }
         ItemStack stack = content;
         content = ItemStack.EMPTY;
-        updateBlockState();
+        renewState();
         return stack;
     }
 
@@ -123,7 +130,7 @@ public class TileEntityTreeTap extends TileEntity implements IInventory{
         }
         content = stack;
         this.markDirty();
-        updateBlockState();
+        renewState();
     }
 
     @Override
@@ -174,7 +181,7 @@ public class TileEntityTreeTap extends TileEntity implements IInventory{
     @Override
     public void clear() {
         content = ItemStack.EMPTY;
-        updateBlockState();
+        renewState();
     }
 
     /* nbt */
@@ -182,6 +189,8 @@ public class TileEntityTreeTap extends TileEntity implements IInventory{
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+
+        super.writeToNBT(nbt);
 
         byte state = 0;
         if(content != null){
@@ -203,13 +212,15 @@ public class TileEntityTreeTap extends TileEntity implements IInventory{
         if (this.hasCustomName()) {
             nbt.setString("CustomName", this.getCustomName());
         }
-        updateBlockState();
         return nbt;
     }
 
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
+
+        super.readFromNBT(nbt);
+
         load = nbt.getByte("Load");
         byte state = nbt.getByte("State");
         if(state == 1){
@@ -229,14 +240,24 @@ public class TileEntityTreeTap extends TileEntity implements IInventory{
         return content;
     }
 
-    private void updateBlockState() {
+    private void renewState() {
+        IBlockState state = getWorld().getBlockState(getPos());
+
+
+        if(state.getBlock() != ModBlocks.TREE_TAP) {
+            return;
+        }
+
+        ModEnum.ENUM_DIRECTION currentDir = state.getValue(BlockTreeTap.BLOCK_DIR);
+
         if(content.getItem() == Items.BUCKET){
-            getWorld().setBlockState(getPos(), getWorld().getBlockState(getPos()).withProperty(BlockTreeTap.BLOCK_STATE, BlockTreeTap.ENUM_STATE.BUCKET), 10);
+            getWorld().setBlockState(getPos(), ModBlocks.TREE_TAP.getDefaultState().withProperty(BlockTreeTap.BLOCK_DIR, currentDir).withProperty(BlockTreeTap.BLOCK_STATE, BlockTreeTap.ENUM_STATE.BUCKET), 10);
         }else if(content.getItem() == ModItems.BUCKET_RESIN){
-            getWorld().setBlockState(getPos(), getWorld().getBlockState(getPos()).withProperty(BlockTreeTap.BLOCK_STATE, BlockTreeTap.ENUM_STATE.RESIN), 10);
+            getWorld().setBlockState(getPos(), ModBlocks.TREE_TAP.getDefaultState().withProperty(BlockTreeTap.BLOCK_DIR, currentDir).withProperty(BlockTreeTap.BLOCK_STATE, BlockTreeTap.ENUM_STATE.RESIN), 10);
         }else {
-            getWorld().setBlockState(getPos(), getWorld().getBlockState(getPos()).withProperty(BlockTreeTap.BLOCK_STATE, BlockTreeTap.ENUM_STATE.NONE), 10);
+            getWorld().setBlockState(getPos(), ModBlocks.TREE_TAP.getDefaultState().withProperty(BlockTreeTap.BLOCK_DIR, currentDir).withProperty(BlockTreeTap.BLOCK_STATE, BlockTreeTap.ENUM_STATE.NONE), 10);
         }
 
     }
+
 }
