@@ -3,14 +3,19 @@ package de.honeypot.technica.init;
 import de.honeypot.technica.Technica;
 import de.honeypot.technica.util.IItemRegistrator;
 import de.honeypot.technica.item.ItemBase;
+import net.minecraft.client.renderer.ItemModelMesher;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -29,9 +34,10 @@ public class ModItems {
     public static Item RUBBER_BAND;
     public static Item BOWL_RESIN;
     public static Item BOWL_RESIN_DRY;
+    public static Item BUCKET_RESIN;
 
     private static List<IItemRegistrator> registrators = new ArrayList<>();
-    private static List<Item> items = new ArrayList<>();
+    private static HashMap<Item, String> items = new HashMap<Item, String>();
 
     /**
      * Marks an IItemRegistrator for registry.
@@ -49,14 +55,27 @@ public class ModItems {
      * @param item The Item that will be registered.
      */
     public static void registerItem(Item item) {
-        items.add(item);
+        registerItem(item, item.getRegistryName().toString());
+    }
+    public static void registerItem(Item item, String model) {
+        items.put(item, model);
     }
 
     /**
      * @return A list of all items that have been registered.
      */
-    public static List<Item> getItems() {
-        return items;
+    public static Set<Item> getItems() {
+        return items.keySet();
+    }
+
+
+
+    public static void registerModels(ItemModelMesher mesher) {
+        items.forEach( (item, name) -> {
+            ModelResourceLocation model = new ModelResourceLocation(name, "inventory");
+            ModelLoader.registerItemVariants(item, model);
+            mesher.register(item, 0, model);
+        });
     }
 
     @Mod.EventBusSubscriber(modid = Technica.MODID)
@@ -73,9 +92,10 @@ public class ModItems {
             RUBBER_BAND = new ItemBase("rubber_band");
             BOWL_RESIN = new ItemBase("bowl_resin");
             BOWL_RESIN_DRY = new ItemBase("bowl_resin_dry");
+            BUCKET_RESIN = new ItemBase("bucket_resin");
 
             items.addAll(registrators.stream().map(IItemRegistrator::registerItem).collect(Collectors.toList()));
-            items.forEach(event.getRegistry()::register);
+            items.keySet().forEach(event.getRegistry()::register);
         }
 
         public static void onPreInit() {

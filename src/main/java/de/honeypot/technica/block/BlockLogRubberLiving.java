@@ -3,9 +3,11 @@ package de.honeypot.technica.block;
 import de.honeypot.technica.Technica;
 import de.honeypot.technica.init.ModBlocks;
 import de.honeypot.technica.init.ModItems;
+import de.honeypot.technica.util.ModEnum;
 import de.honeypot.technica.util.ModNBTUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -30,16 +32,6 @@ import java.util.Random;
  */
 public class BlockLogRubberLiving extends Block {
 
-    public enum CUT_DIRECTION implements IStringSerializable {
-        NORTH, EAST, SOUTH, WEST;
-
-
-        @Override
-        public String getName() {
-            return this.name().toLowerCase();
-        }
-    }
-
     public enum CUT_STATUS implements IStringSerializable {
         NONE, FRESH, READY, DRY;
 
@@ -51,7 +43,7 @@ public class BlockLogRubberLiving extends Block {
     }
 
     public final static String RUBBER_LOG_LIVING = "log_rubber_living";
-    public final static PropertyEnum<CUT_DIRECTION> LOG_DIRECTION = PropertyEnum.<CUT_DIRECTION>create("dir", CUT_DIRECTION.class);
+    public final static PropertyEnum<ModEnum.ENUM_DIRECTION> LOG_DIRECTION = PropertyEnum.<ModEnum.ENUM_DIRECTION>create("dir", ModEnum.ENUM_DIRECTION.class);
     public final static PropertyEnum<CUT_STATUS> LOG_STATUS = PropertyEnum.<CUT_STATUS>create("status", CUT_STATUS.class);
 
     public BlockLogRubberLiving(){
@@ -99,8 +91,9 @@ public class BlockLogRubberLiving extends Block {
     @Override
     @SuppressWarnings("deprecation")
     public IBlockState getStateFromMeta(int meta) {
+
         return getDefaultState()
-                .withProperty(LOG_DIRECTION, CUT_DIRECTION.values()[meta & 0x3])
+                .withProperty(LOG_DIRECTION, ModEnum.ENUM_DIRECTION.values()[meta & 0x3])
                 .withProperty(LOG_STATUS,    CUT_STATUS.values()[meta >> 2]);
     }
 
@@ -115,7 +108,7 @@ public class BlockLogRubberLiving extends Block {
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
 
-        CUT_DIRECTION dir = state.getValue(LOG_DIRECTION);
+        ModEnum.ENUM_DIRECTION dir = state.getValue(LOG_DIRECTION);
         CUT_STATUS status = state.getValue(LOG_STATUS);
 
         if(playerIn.isSpectator()){
@@ -123,21 +116,28 @@ public class BlockLogRubberLiving extends Block {
         }
 
         if(state.getValue(LOG_STATUS) == CUT_STATUS.NONE && ModNBTUtil.getDamageFromItem(playerIn.getHeldItem(hand)) > 1){
+
+
+            if(state.getValue(LOG_DIRECTION) != ModEnum.ENUM_DIRECTION.NORTH){
+                return false;
+            }
+
+
             switch (facing){
                 case UP:
                 case DOWN:
                     return false;
                 case NORTH:
-                    dir = CUT_DIRECTION.NORTH;
+                    dir = ModEnum.ENUM_DIRECTION.NORTH;
                     break;
                 case EAST:
-                    dir = CUT_DIRECTION.EAST;
+                    dir = ModEnum.ENUM_DIRECTION.EAST;
                     break;
                 case WEST:
-                    dir = CUT_DIRECTION.WEST;
+                    dir = ModEnum.ENUM_DIRECTION.WEST;
                     break;
                 case SOUTH:
-                    dir = CUT_DIRECTION.SOUTH;
+                    dir = ModEnum.ENUM_DIRECTION.SOUTH;
             }
             worldIn.setBlockState(pos, getDefaultState().withProperty(LOG_DIRECTION, dir).withProperty(LOG_STATUS, CUT_STATUS.FRESH), 10);
             return true;
@@ -150,16 +150,16 @@ public class BlockLogRubberLiving extends Block {
                 case DOWN:
                     return false;
                 case NORTH:
-                    if(state.getValue(LOG_DIRECTION) != CUT_DIRECTION.NORTH) return false;
+                    if(state.getValue(LOG_DIRECTION) != ModEnum.ENUM_DIRECTION.NORTH) return false;
                     break;
                 case EAST:
-                    if(state.getValue(LOG_DIRECTION) != CUT_DIRECTION.EAST) return false;
+                    if(state.getValue(LOG_DIRECTION) != ModEnum.ENUM_DIRECTION.EAST) return false;
                     break;
                 case WEST:
-                    if(state.getValue(LOG_DIRECTION) != CUT_DIRECTION.WEST) return false;
+                    if(state.getValue(LOG_DIRECTION) != ModEnum.ENUM_DIRECTION.WEST) return false;
                     break;
                 case SOUTH:
-                    if(state.getValue(LOG_DIRECTION) != CUT_DIRECTION.SOUTH) return false;
+                    if(state.getValue(LOG_DIRECTION) != ModEnum.ENUM_DIRECTION.SOUTH) return false;
             }
 
             status = CUT_STATUS.FRESH;
@@ -190,13 +190,109 @@ public class BlockLogRubberLiving extends Block {
         } else if(state.getValue(LOG_STATUS) == CUT_STATUS.READY){
             worldIn.setBlockState(pos, state.withProperty(LOG_STATUS, CUT_STATUS.DRY), 10);
         }else if(state.getValue(LOG_STATUS) == CUT_STATUS.DRY){
-            worldIn.setBlockState(pos, state.withProperty(LOG_STATUS, CUT_STATUS.NONE), 10);
+            worldIn.setBlockState(pos, state.withProperty(LOG_STATUS, CUT_STATUS.NONE).withProperty(LOG_DIRECTION, ModEnum.ENUM_DIRECTION.NORTH), 10);
         }
 
     }
 
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
         return Item.getItemFromBlock(ModBlocks.LOG_RUBBER);
+    }
+
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+
+
+        if(state.getValue(LOG_STATUS) != CUT_STATUS.NONE){
+            return;
+        }
+
+        if(state.getValue(LOG_DIRECTION) != ModEnum.ENUM_DIRECTION.EAST){
+            return;
+        }
+        //check block in the north
+        IBlockState temp = worldIn.getBlockState(pos.north());
+        if(temp.getBlock() == ModBlocks.TREE_TAP){
+            if(temp.getValue(BlockTreeTap.BLOCK_DIR) == ModEnum.ENUM_DIRECTION.SOUTH){
+                ModBlocks.TREE_TAP.dropFromMissingSource(worldIn, temp, pos.north());
+                return;
+            }
+        }
+        //check block in the east
+        temp = worldIn.getBlockState(pos.east());
+        if(temp.getBlock() == ModBlocks.TREE_TAP){
+            if(temp.getValue(BlockTreeTap.BLOCK_DIR) == ModEnum.ENUM_DIRECTION.WEST){
+                ModBlocks.TREE_TAP.dropFromMissingSource(worldIn, temp, pos.east());
+                return;
+            }
+        }
+        //check block in the south
+        temp = worldIn.getBlockState(pos.south());
+        if(temp.getBlock() == ModBlocks.TREE_TAP){
+            if(temp.getValue(BlockTreeTap.BLOCK_DIR) == ModEnum.ENUM_DIRECTION.NORTH){
+                ModBlocks.TREE_TAP.dropFromMissingSource(worldIn, temp, pos.south());
+                return;
+            }
+        }
+        //check block in the west
+        temp = worldIn.getBlockState(pos.west());
+        if(temp.getBlock() == ModBlocks.TREE_TAP){
+            if(temp.getValue(BlockTreeTap.BLOCK_DIR) == ModEnum.ENUM_DIRECTION.EAST){
+                ModBlocks.TREE_TAP.dropFromMissingSource(worldIn, temp, pos.west());
+                return;
+            }
+        }
+
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public EnumPushReaction getMobilityFlag(IBlockState state) {
+
+        if(state.getValue(LOG_STATUS) != CUT_STATUS.NONE){
+            return EnumPushReaction.NORMAL;
+        }
+
+        if(state.getValue(LOG_DIRECTION) != ModEnum.ENUM_DIRECTION.EAST){
+            return EnumPushReaction.NORMAL;
+        }
+        return EnumPushReaction.BLOCK;
+    }
+
+    /**
+     *
+     * @return weather a tree tap is facing at this block or not
+     */
+    private boolean isSource(World worldIn, BlockPos pos){
+        //check block in the north
+        IBlockState temp = worldIn.getBlockState(pos.north());
+        if(temp.getBlock() == ModBlocks.TREE_TAP){
+            if(temp.getValue(BlockTreeTap.BLOCK_DIR) == ModEnum.ENUM_DIRECTION.SOUTH){
+                return true;
+            }
+        }
+        //check block in the east
+        temp = worldIn.getBlockState(pos.east());
+        if(temp.getBlock() == ModBlocks.TREE_TAP){
+            if(temp.getValue(BlockTreeTap.BLOCK_DIR) == ModEnum.ENUM_DIRECTION.WEST){
+                return true;
+            }
+        }
+        //check block in the south
+        temp = worldIn.getBlockState(pos.south());
+        if(temp.getBlock() == ModBlocks.TREE_TAP){
+            if(temp.getValue(BlockTreeTap.BLOCK_DIR) == ModEnum.ENUM_DIRECTION.NORTH){
+                return true;
+            }
+        }
+        //check block in the west
+        temp = worldIn.getBlockState(pos.west());
+        if(temp.getBlock() == ModBlocks.TREE_TAP){
+            if(temp.getValue(BlockTreeTap.BLOCK_DIR) == ModEnum.ENUM_DIRECTION.EAST){
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }
