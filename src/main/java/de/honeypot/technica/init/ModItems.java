@@ -33,14 +33,28 @@ public class ModItems {
     private static List<IItemRegistrator> registrators = new ArrayList<>();
     private static List<Item> items = new ArrayList<>();
 
+    /**
+     * Marks an IItemRegistrator for registry.
+     * The {@link IItemRegistrator#registerItem()} method will be called later, when the item is needed.
+     * This is mainly used to circumvent Block-Items from being registered in their constructor as some ItemBlock
+     * instances need variables from the Item when they are being registered.
+     * @param registrator A class that implements the IItemRegistrator interface.
+     */
     public static void markForRegistry(IItemRegistrator registrator) {
         registrators.add(registrator);
     }
 
+    /**
+     * Adds the given Item to the registration list.
+     * @param item The Item that will be registered.
+     */
     public static void registerItem(Item item) {
         items.add(item);
     }
 
+    /**
+     * @return A list of all items that have been registered.
+     */
     public static List<Item> getItems() {
         return items;
     }
