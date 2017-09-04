@@ -36,7 +36,7 @@ public class ItemBlockVariants<E extends Enum<E> & IStringSerializable> extends 
     public void registerModel() {
         for (E value: variants) {
             String variant = "variant=" + value.getName();
-            ModelLoader.setCustomModelResourceLocation(this, value.ordinal(), new ModelResourceLocation(this.getRegistryName(), variant));
+            ModelLoader.setCustomModelResourceLocation(this, value.ordinal(), new ModelResourceLocation(getRegistryName(), variant));
         }
     }
 }
