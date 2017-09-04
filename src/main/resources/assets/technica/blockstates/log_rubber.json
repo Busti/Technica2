@@ -1,8 +1,31 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube_column",
+    "textures": {
+      "end": "technica:blocks/log_rubber_end",
+      "side": "technica:blocks/log_rubber_side"
+    }
+  },
   "variants": {
-    "axis=y":  { "model": "technica:log_rubber" },
-    "axis=z":   { "model": "technica:log_rubber", "x": 90 },
-    "axis=x":   { "model": "technica:log_rubber", "x": 90, "y": 90 },
-    "axis=none": { "model": "technica:log_rubber" }
+    "axis": {
+      "x": {
+        "x": 90,
+        "y": 90
+      },
+      "y": {},
+      "z": {
+        "x": 90
+      },
+      "none": {
+        "textures": {
+          "end": "technica:blocks/log_rubber_bottom",
+          "side": "technica:blocks/log_rubber_bottom"
+        }
+      }
+    },
+    "inventory": [
+      {}
+    ]
   }
 }

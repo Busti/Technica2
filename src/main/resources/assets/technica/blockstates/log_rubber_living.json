@@ -1,62 +1,50 @@
 {
-  "variants": {
-
-    "dir=north,status=none":  {
-      "model": "technica:log_rubber"
-    },
-    "dir=east,status=none":  {
-      "model": "technica:log_rubber"
-    },
-    "dir=south,status=none":  {
-      "model": "technica:log_rubber"
-    },
-    "dir=west,status=none":  {
-      "model": "technica:log_rubber"
-    },
-    "dir=north,status=fresh": {
-      "model": "technica:log_rubber_fresh"
-    },
-    "dir=east,status=fresh": {
-      "y": 90,
-      "model": "technica:log_rubber_fresh"
-    },
-    "dir=south,status=fresh": {
-      "y": 180,
-      "model": "technica:log_rubber_fresh"
-    },
-    "dir=west,status=fresh": {
-      "y": 270,
-      "model": "technica:log_rubber_fresh"
-    },
-    "dir=north,status=ready": {
-      "model": "technica:log_rubber_ready"
-    },
-    "dir=east,status=ready": {
-      "y": 90,
-      "model": "technica:log_rubber_ready"
-    },
-    "dir=south,status=ready": {
-      "y": 180,
-      "model": "technica:log_rubber_ready"
-    },
-    "dir=west,status=ready": {
-      "y": 270,
-      "model": "technica:log_rubber_ready"
-    },
-    "dir=north,status=dry": {
-      "model": "technica:log_rubber_dry"
-    },
-    "dir=east,status=dry": {
-      "y": 90,
-      "model": "technica:log_rubber_dry"
-    },
-    "dir=south,status=dry": {
-      "y": 180,
-      "model": "technica:log_rubber_dry"
-    },
-    "dir=west,status=dry": {
-      "y": 270,
-      "model": "technica:log_rubber_dry"
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:orientable",
+    "textures": {
+      "top": "technica:blocks/log_rubber_end",
+      "side": "technica:blocks/log_rubber_side",
+      "front": "technica:blocks/log_rubber_side"
     }
+  },
+  "variants": {
+    "dir": {
+      "north": {},
+      "east": {
+        "y": 90
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      }
+    },
+    "status": {
+      "none": {
+        "textures": {
+          "front": "technica:blocks/log_rubber_side"
+        }
+      },
+      "fresh": {
+        "textures": {
+          "front": "technica:blocks/log_rubber_fresh"
+        }
+      },
+      "ready": {
+        "textures": {
+          "front": "technica:blocks/log_rubber_ready"
+        }
+      },
+      "dry":{
+        "textures": {
+          "front": "technica:blocks/log_rubber_dry"
+        }
+      }
+    },
+    "inventory": [
+      {}
+    ]
   }
 }

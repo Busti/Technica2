@@ -1,6 +1,18 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:leaves",
+    "textures": {
+      "all": "technica:blocks/leaves_rubber"
+    }
+  },
   "variants": {
-    "decayable=true": { "model": "technica:leaves_rubber" },
-    "decayable=false": { "model": "technica:leaves_rubber" }
+    "decayable": {
+      "true": {},
+      "false": {}
+    },
+    "inventory": [
+      {}
+    ]
   }
 }
