@@ -6,6 +6,7 @@ import de.honeypot.technica.init.ModBlocks;
 import de.honeypot.technica.init.ModItems;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -26,19 +27,17 @@ public class BlockSaplingRubber extends BlockBush implements IGrowable {
     public final static String SAPLING_RUBBER = "sapling_rubber";
 
     public BlockSaplingRubber(){
-
         setRegistryName(SAPLING_RUBBER);
         setUnlocalizedName(SAPLING_RUBBER);
         ModBlocks.registerBlock(this);
         setCreativeTab(Technica.CREATIVE_TAB_TECHNICA);
-
+        setSoundType(SoundType.PLANT);
 
         ItemBlock item = new ItemBlock(this);
         item.setRegistryName(SAPLING_RUBBER);
         item.setUnlocalizedName(SAPLING_RUBBER);
         item.setCreativeTab(Technica.CREATIVE_TAB_TECHNICA);
         ModItems.registerItem(item);
-
     }
 
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
