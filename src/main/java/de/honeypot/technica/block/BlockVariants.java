@@ -1,5 +1,6 @@
 package de.honeypot.technica.block;
 
+import de.honeypot.technica.item.ItemBlockVariants;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -8,7 +9,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemMultiTexture;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
@@ -59,7 +59,7 @@ public class BlockVariants<E extends Enum<E> & IStringSerializable> extends Bloc
         return state.getValue(propVariant);
     }
 
-    private String getName(final ItemStack stack) {
+    protected String getName(final ItemStack stack) {
         final int metadata = stack.getMetadata();
         return variants[metadata].getName();
     }
@@ -88,7 +88,7 @@ public class BlockVariants<E extends Enum<E> & IStringSerializable> extends Bloc
 
     @Override
     public void getSubBlocks(final CreativeTabs tab, final NonNullList<ItemStack> list) {
-        for (E state: variants) {
+        for (E state : variants) {
             list.add(new ItemStack(this, 1, state.ordinal()));
         }
     }
@@ -100,6 +100,6 @@ public class BlockVariants<E extends Enum<E> & IStringSerializable> extends Bloc
 
     @Override
     public Item getBlockItem() {
-        return new ItemMultiTexture(this, this, this::getName);
+        return new ItemBlockVariants<E>(this, this::getName, variants);
     }
 }

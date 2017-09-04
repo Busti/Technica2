@@ -3,13 +3,16 @@ package de.honeypot.technica.block;
 import de.honeypot.technica.Technica;
 import de.honeypot.technica.init.ModBlocks;
 import de.honeypot.technica.init.ModItems;
+import de.honeypot.technica.item.IItemRegistrator;
 import jline.internal.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 
-public class BlockBase extends Block {
+public class BlockBase extends Block implements IItemRegistrator {
+    private final String name;
+
     public BlockBase(Material material, String name) {
         super(material);
         setRegistryName(name);
@@ -17,9 +20,9 @@ public class BlockBase extends Block {
         ModBlocks.registerBlock(this);
         setCreativeTab(Technica.CREATIVE_TAB_TECHNICA);
 
-        Item item = generateBlockItem(name);
-        if (item != null)
-            ModItems.registerItem(item);
+        this.name = name;
+
+        ModItems.markForRegistry(this);
     }
 
     /**
@@ -43,5 +46,10 @@ public class BlockBase extends Block {
         item.setUnlocalizedName(name);
         item.setCreativeTab(Technica.CREATIVE_TAB_TECHNICA);
         return item;
+    }
+
+    @Override
+    public Item registerItem() {
+        return generateBlockItem(name);
     }
 }

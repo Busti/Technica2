@@ -1,13 +1,25 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube_all"
+  },
   "variants": {
-    "variant=copper": {
-      "model": "technica:ore_copper"
-    },
-    "variant=aluminium": {
-      "model": "technica:ore_aluminium"
-    },
-    "variant=lead": {
-      "model": "technica:ore_lead"
+    "variant": {
+      "copper": {
+        "textures": {
+          "all": "technica:blocks/ore_copper"
+        }
+      },
+      "aluminium": {
+        "textures": {
+          "all": "technica:blocks/ore_aluminium"
+        }
+      },
+      "lead": {
+        "textures": {
+          "all": "technica:blocks/ore_lead"
+        }
+      }
     }
   }
 }
