@@ -211,33 +211,33 @@ public class BlockLogRubberLiving extends Block {
         }
         //check block in the north
         IBlockState temp = worldIn.getBlockState(pos.north());
-        if(temp.getBlock() == ModBlocks.HOOK_RUBBER){
+        if(temp.getBlock() == ModBlocks.TREE_TAP){
             if(temp.getValue(BlockTreeTap.BLOCK_DIR) == ModEnum.ENUM_DIRECTION.SOUTH){
-                ModBlocks.HOOK_RUBBER.dropFromMissingSource(worldIn, temp, pos.north());
+                ModBlocks.TREE_TAP.dropFromMissingSource(worldIn, temp, pos.north());
                 return;
             }
         }
         //check block in the east
         temp = worldIn.getBlockState(pos.east());
-        if(temp.getBlock() == ModBlocks.HOOK_RUBBER){
+        if(temp.getBlock() == ModBlocks.TREE_TAP){
             if(temp.getValue(BlockTreeTap.BLOCK_DIR) == ModEnum.ENUM_DIRECTION.WEST){
-                ModBlocks.HOOK_RUBBER.dropFromMissingSource(worldIn, temp, pos.east());
+                ModBlocks.TREE_TAP.dropFromMissingSource(worldIn, temp, pos.east());
                 return;
             }
         }
         //check block in the south
         temp = worldIn.getBlockState(pos.south());
-        if(temp.getBlock() == ModBlocks.HOOK_RUBBER){
+        if(temp.getBlock() == ModBlocks.TREE_TAP){
             if(temp.getValue(BlockTreeTap.BLOCK_DIR) == ModEnum.ENUM_DIRECTION.NORTH){
-                ModBlocks.HOOK_RUBBER.dropFromMissingSource(worldIn, temp, pos.south());
+                ModBlocks.TREE_TAP.dropFromMissingSource(worldIn, temp, pos.south());
                 return;
             }
         }
         //check block in the west
         temp = worldIn.getBlockState(pos.west());
-        if(temp.getBlock() == ModBlocks.HOOK_RUBBER){
+        if(temp.getBlock() == ModBlocks.TREE_TAP){
             if(temp.getValue(BlockTreeTap.BLOCK_DIR) == ModEnum.ENUM_DIRECTION.EAST){
-                ModBlocks.HOOK_RUBBER.dropFromMissingSource(worldIn, temp, pos.west());
+                ModBlocks.TREE_TAP.dropFromMissingSource(worldIn, temp, pos.west());
                 return;
             }
         }
@@ -265,28 +265,28 @@ public class BlockLogRubberLiving extends Block {
     private boolean isSource(World worldIn, BlockPos pos){
         //check block in the north
         IBlockState temp = worldIn.getBlockState(pos.north());
-        if(temp.getBlock() == ModBlocks.HOOK_RUBBER){
+        if(temp.getBlock() == ModBlocks.TREE_TAP){
             if(temp.getValue(BlockTreeTap.BLOCK_DIR) == ModEnum.ENUM_DIRECTION.SOUTH){
                 return true;
             }
         }
         //check block in the east
         temp = worldIn.getBlockState(pos.east());
-        if(temp.getBlock() == ModBlocks.HOOK_RUBBER){
+        if(temp.getBlock() == ModBlocks.TREE_TAP){
             if(temp.getValue(BlockTreeTap.BLOCK_DIR) == ModEnum.ENUM_DIRECTION.WEST){
                 return true;
             }
         }
         //check block in the south
         temp = worldIn.getBlockState(pos.south());
-        if(temp.getBlock() == ModBlocks.HOOK_RUBBER){
+        if(temp.getBlock() == ModBlocks.TREE_TAP){
             if(temp.getValue(BlockTreeTap.BLOCK_DIR) == ModEnum.ENUM_DIRECTION.NORTH){
                 return true;
             }
         }
         //check block in the west
         temp = worldIn.getBlockState(pos.west());
-        if(temp.getBlock() == ModBlocks.HOOK_RUBBER){
+        if(temp.getBlock() == ModBlocks.TREE_TAP){
             if(temp.getValue(BlockTreeTap.BLOCK_DIR) == ModEnum.ENUM_DIRECTION.EAST){
                 return true;
             }

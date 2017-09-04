@@ -30,6 +30,7 @@ public class ModItems {
     public static Item RUBBER_BAND;
     public static Item BOWL_RESIN;
     public static Item BOWL_RESIN_DRY;
+    public static Item BUCKET_RESIN;
 
     private static HashMap<Item, String> items = new HashMap<Item, String>();
 
@@ -63,6 +64,7 @@ public class ModItems {
             RUBBER_BAND = new ItemGeneric("rubber_band");
             BOWL_RESIN = new ItemGeneric("bowl_resin");
             BOWL_RESIN_DRY = new ItemGeneric("bowl_resin_dry");
+            BUCKET_RESIN = new ItemGeneric("bucket_resin");
 
             items.keySet().forEach(event.getRegistry()::register);
         }
