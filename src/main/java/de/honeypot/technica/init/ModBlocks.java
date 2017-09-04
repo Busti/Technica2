@@ -13,11 +13,12 @@ import java.util.ArrayList;
 
 @GameRegistry.ObjectHolder(Technica.MODID)
 public class ModBlocks {
-    public static Block LOG_RUBBER;
-    public static Block LOG_RUBBER_LIVING;
-    public static Block SAPLING_RUBBER;
-    public static Block LEAVES_RUBBER;
-    public static BlockOre ORE;
+    public static BlockLogRubber        LOG_RUBBER;
+    public static BlockLogRubberLiving  LOG_RUBBER_LIVING;
+    public static BlockSaplingRubber    SAPLING_RUBBER;
+    public static BlockLeavesRubber     LEAVES_RUBBER;
+    public static BlockTreeTap          TREE_TAP;
+    public static BlockOre              ORE;
 
     private static ArrayList<Block> blocks = new ArrayList<Block>(20);
 
@@ -35,6 +36,7 @@ public class ModBlocks {
             SAPLING_RUBBER = new BlockSaplingRubber();
             LEAVES_RUBBER = new BlockLeavesRubber();
             ORE = new BlockOre(Material.ROCK, "ore");
+            TREE_TAP = new BlockTreeTap();
 
             blocks.forEach(event.getRegistry()::register);
         }
