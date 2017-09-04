@@ -21,7 +21,7 @@ public class TechnicaWorldGenerator implements IWorldGenerator {
     private WorldGenTreeRubber rubberTreeGenerator;
 
     public TechnicaWorldGenerator() {
-        copperOreGenerator = new WorldGenMinable(ModBlocks.ORE.getDefaultState().withProperty(ModBlocks.ORE.propVariant, BlockOre.Type.COPPER), 8);
+        copperOreGenerator = new WorldGenMinable(ModBlocks.ORE.getDefaultState().withProperty(ModBlocks.ORE.propVariant, BlockOre.EnumType.COPPER), 8);
         rubberTreeGenerator = new WorldGenTreeRubber();
     }
 

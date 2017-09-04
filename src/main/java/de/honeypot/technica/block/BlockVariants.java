@@ -1,6 +1,7 @@
 package de.honeypot.technica.block;
 
 import de.honeypot.technica.item.ItemBlockVariants;
+import de.honeypot.technica.util.IEnumVariants;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -16,7 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class BlockVariants<E extends Enum<E> & IStringSerializable> extends BlockBase {
+public class BlockVariants<E extends Enum<E> & IStringSerializable & IEnumVariants> extends BlockBase {
     public final IProperty<E> propVariant;
     private final E[] variants;
 
@@ -48,7 +49,7 @@ public class BlockVariants<E extends Enum<E> & IStringSerializable> extends Bloc
     }
 
     public int getMetaFromVariant(E variant) {
-        return variant.ordinal();
+        return variant.getMetadata();
     }
 
     protected IBlockState getStateFromVariant(E variant) {
@@ -78,7 +79,7 @@ public class BlockVariants<E extends Enum<E> & IStringSerializable> extends Bloc
 
     @Override
     public int getMetaFromState(final IBlockState state) {
-        return state.getValue(propVariant).ordinal();
+        return state.getValue(propVariant).getMetadata();
     }
 
     @Override
@@ -89,7 +90,7 @@ public class BlockVariants<E extends Enum<E> & IStringSerializable> extends Bloc
     @Override
     public void getSubBlocks(final CreativeTabs tab, final NonNullList<ItemStack> list) {
         for (E state : variants) {
-            list.add(new ItemStack(this, 1, state.ordinal()));
+            list.add(new ItemStack(this, 1, state.getMetadata()));
         }
     }
 
