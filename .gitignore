@@ -11,7 +11,9 @@ out
 *.ipr
 *.iws
 *.iml
-.idea
+.idea/*
+!.idea/dictionaries
+!.idea/dictionaries/*
 
 # gradle
 build
