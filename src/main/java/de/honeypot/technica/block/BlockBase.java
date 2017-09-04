@@ -3,7 +3,7 @@ package de.honeypot.technica.block;
 import de.honeypot.technica.Technica;
 import de.honeypot.technica.init.ModBlocks;
 import de.honeypot.technica.init.ModItems;
-import de.honeypot.technica.item.IItemRegistrator;
+import de.honeypot.technica.util.IItemRegistrator;
 import jline.internal.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

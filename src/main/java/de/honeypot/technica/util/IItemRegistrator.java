@@ -1,4 +1,4 @@
-package de.honeypot.technica.item;
+package de.honeypot.technica.util;
 
 import net.minecraft.item.Item;
 

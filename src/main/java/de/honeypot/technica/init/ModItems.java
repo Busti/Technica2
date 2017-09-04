@@ -1,7 +1,7 @@
 package de.honeypot.technica.init;
 
 import de.honeypot.technica.Technica;
-import de.honeypot.technica.item.IItemRegistrator;
+import de.honeypot.technica.util.IItemRegistrator;
 import de.honeypot.technica.item.ItemBase;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
