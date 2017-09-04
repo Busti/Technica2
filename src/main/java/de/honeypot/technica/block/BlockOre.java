@@ -2,7 +2,6 @@ package de.honeypot.technica.block;
 
 import de.honeypot.technica.util.IEnumVariants;
 import net.minecraft.block.material.Material;
-import net.minecraft.util.IStringSerializable;
 
 import java.util.Comparator;
 import java.util.stream.Stream;
@@ -17,7 +16,7 @@ public class BlockOre extends BlockVariants<BlockOre.EnumType> {
             setHarvestLevel("pickaxe", type.level, getStateFromVariant(type));
     }
 
-    public enum EnumType implements IStringSerializable, IEnumVariants {
+    public enum EnumType implements IEnumVariants<EnumType> {
         // @formatter:off
         COPPER(   "copper",    0, 1),
         ALUMINIUM("aluminium", 1, 1),

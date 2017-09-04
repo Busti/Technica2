@@ -1,6 +1,8 @@
 package de.honeypot.technica.util;
 
-public interface IEnumVariants<E extends Enum<E>> {
+import net.minecraft.util.IStringSerializable;
+
+public interface IEnumVariants<E extends Enum<E> & IEnumVariants<E>> extends IStringSerializable {
     /**
      * Get the Metadata of the Variant
      * @return The Metadata
