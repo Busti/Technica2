@@ -5,7 +5,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 /**
  * Created by gast2 on 04.09.17.
  */
-public class BBHelper {
+public class AABBHelper {
 
     public static AxisAlignedBB turnRight(AxisAlignedBB box){
 
