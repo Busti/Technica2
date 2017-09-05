@@ -1,4 +1,4 @@
-package de.honeypot.technica.tileentity;
+package de.honeypot.technica.tile;
 
 import de.honeypot.technica.block.BlockTreeTap;
 import de.honeypot.technica.init.ModBlocks;
@@ -8,25 +8,23 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
  * Created by Chloroplast on 04.09.2017.
  */
-public class TileEntityTreeTap extends TileEntity implements IInventory{
+public class TileTreeTap extends TileEntity implements IInventory{
 
     private ItemStack content = ItemStack.EMPTY;
     private String customName;
 
     public byte load = 0;
 
-    public TileEntityTreeTap() {
+    public TileTreeTap() {
 
     }
 

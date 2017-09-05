@@ -3,7 +3,7 @@ package de.honeypot.technica.block;
 import de.honeypot.technica.Technica;
 import de.honeypot.technica.init.ModBlocks;
 import de.honeypot.technica.init.ModItems;
-import de.honeypot.technica.tileentity.TileEntityTreeTap;
+import de.honeypot.technica.tile.TileTreeTap;
 import de.honeypot.technica.util.AABBHelper;
 import de.honeypot.technica.util.ModEnum;
 import net.minecraft.block.Block;
@@ -89,13 +89,13 @@ public class BlockTreeTap extends BlockContainer {
                 .withProperty(BLOCK_STATE, ENUM_STATE.NONE)
                 .withProperty(BLOCK_POWER, false));
 
-        GameRegistry.registerTileEntity(TileEntityTreeTap.class, "tree_trap");
+        GameRegistry.registerTileEntity(TileTreeTap.class, "tree_trap");
     }
 
     @Nullable
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileEntityTreeTap();
+        return new TileTreeTap();
     }
 
     @Override
@@ -244,7 +244,7 @@ public class BlockTreeTap extends BlockContainer {
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 
         if (stack.hasDisplayName()) {
-            ((TileEntityTreeTap) worldIn.getTileEntity(pos)).setCustomName(stack.getDisplayName());
+            ((TileTreeTap) worldIn.getTileEntity(pos)).setCustomName(stack.getDisplayName());
         }
 
         BlockPos posAimed = null;
@@ -299,7 +299,7 @@ public class BlockTreeTap extends BlockContainer {
     @Override
     @SuppressWarnings("deprecation")
     public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos) {
-        TileEntityTreeTap te = (TileEntityTreeTap) worldIn.getTileEntity(pos);
+        TileTreeTap te = (TileTreeTap) worldIn.getTileEntity(pos);
         if(te.getContent() == null || te.getContent().isEmpty()){
             return 0;
         }
@@ -314,7 +314,7 @@ public class BlockTreeTap extends BlockContainer {
     public void randomTick(World worldIn, BlockPos pos, IBlockState state, Random random) {
 
         if(state.getValue(BLOCK_STATE) == ENUM_STATE.BUCKET){
-            TileEntityTreeTap te = (TileEntityTreeTap) worldIn.getTileEntity(pos);
+            TileTreeTap te = (TileTreeTap) worldIn.getTileEntity(pos);
             ++te.load;
 
             if(te.load > MAX_LOAD){
@@ -365,7 +365,7 @@ public class BlockTreeTap extends BlockContainer {
         ItemStack stackInHand = playerIn.getHeldItem(hand);
 
         ENUM_STATE content = state.getValue(BLOCK_STATE);
-        TileEntityTreeTap te = (TileEntityTreeTap) worldIn.getTileEntity(pos);
+        TileTreeTap te = (TileTreeTap) worldIn.getTileEntity(pos);
 
         if(content == ENUM_STATE.NONE){
             if(stackInHand.getItem() == Items.BUCKET){
@@ -399,7 +399,7 @@ public class BlockTreeTap extends BlockContainer {
     }
 
     private void dropContent(World worldIn, BlockPos pos){
-        TileEntityTreeTap te = (TileEntityTreeTap) worldIn.getTileEntity(pos);
+        TileTreeTap te = (TileTreeTap) worldIn.getTileEntity(pos);
         worldIn.spawnEntity(new EntityItem(worldIn, pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, te.getContent()));
         te.setInventorySlotContents(0, ItemStack.EMPTY);
     }
