@@ -7,7 +7,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
 import java.util.Arrays;
-import java.util.stream.StreamSupport;
 
 public abstract class TileInventory extends TileNamable implements IInventory {
     private final ItemStack[] slots = new ItemStack[getSizeInventory()];
@@ -99,6 +98,13 @@ public abstract class TileInventory extends TileNamable implements IInventory {
 
         clear();
 
+        for (int i = 0; i < slots.length; i++) {
+            NBTTagCompound tag = list.getCompoundTagAt(i);
+            int slot = tag.getInteger("slot");
+            slots[slot] = new ItemStack(tag);
+        }
+
+        /*
         StreamSupport.stream(list.spliterator(), false)
                 .filter( tag -> tag.getId() == 10)
                 .map(    tag -> (NBTTagCompound) tag)
@@ -106,6 +112,7 @@ public abstract class TileInventory extends TileNamable implements IInventory {
                     int slot = tag.getInteger("slot");
                     slots[slot] = new ItemStack(tag);
                 });
+        */
     }
 
     @Override
