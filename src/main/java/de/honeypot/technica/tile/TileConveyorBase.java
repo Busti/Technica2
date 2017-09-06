@@ -1,9 +1,15 @@
 package de.honeypot.technica.tile;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
+/**
+ * The base tileentity for all conveyor systems.
+ * The inventory slots are used as follows:
+ *     1 -> The main input slot for this conveyor.
+ *     2 -> The main output slot for this conveyor.
+ */
 public class TileConveyorBase extends TileInventory {
+
     @Override
     public String getTileName() {
         return "tile.technica.conveyor.name";
@@ -15,22 +21,8 @@ public class TileConveyorBase extends TileInventory {
     }
 
     @Override
-    public boolean isUsableByPlayer(EntityPlayer player) {
-        return false;
-    }
-
-    @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
-        return false;
-    }
 
-    @Override
-    public String getName() {
-        return null;
-    }
-
-    @Override
-    public boolean hasCustomName() {
         return false;
     }
 }

@@ -8,6 +8,11 @@ import net.minecraft.nbt.NBTTagList;
 
 import java.util.Arrays;
 
+/**
+ * A tileentity that holds an inventory.
+ * The inventory will be properly stored and loaded to NBT when the world saves.
+ * The variable holding this inventories ItemStack instances is called slots.
+ */
 public abstract class TileInventory extends TileNamable implements IInventory {
     private final ItemStack[] slots = new ItemStack[getSizeInventory()];
 
@@ -59,6 +64,11 @@ public abstract class TileInventory extends TileNamable implements IInventory {
     @Override
     public int getInventoryStackLimit() {
         return 64;
+    }
+
+    @Override
+    public boolean isUsableByPlayer(EntityPlayer player) {
+        return false;
     }
 
     @Override
