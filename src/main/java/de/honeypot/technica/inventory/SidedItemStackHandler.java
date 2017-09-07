@@ -7,7 +7,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public abstract class SidedItemStackWrapper extends ItemStackHandler implements ISidedItemHandler {
+public abstract class SidedItemStackHandler extends ItemStackHandler implements ISidedItemHandler {
     @Nonnull
     @Override
     public ItemStack insertItem(@Nullable EnumFacing facing, int slot, @Nonnull ItemStack stack, boolean simulate) {
