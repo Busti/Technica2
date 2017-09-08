@@ -1,4 +1,4 @@
-package de.honeypot.technica.inventory;
+package de.honeypot.technica.inventory.util;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;

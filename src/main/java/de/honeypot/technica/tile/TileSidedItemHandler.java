@@ -1,5 +1,6 @@
 package de.honeypot.technica.tile;
 
+import de.honeypot.technica.inventory.util.ISidedItemHandler;
 import de.honeypot.technica.util.ISideSensitiveCapabilityStorage;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -10,10 +11,10 @@ import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nullable;
 
-public abstract class TileSidedItemHandler<I extends ISideSensitiveCapabilityStorage<IItemHandler>> extends TileEntity {
-    protected final I inventory = createInventory();
+public abstract class TileSidedItemHandler<C extends ISideSensitiveCapabilityStorage<IItemHandler, ISidedItemHandler>> extends TileEntity {
+    protected final C inventory = createInventory();
 
-    protected abstract I createInventory();
+    protected abstract C createInventory();
 
     @Override
     public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {

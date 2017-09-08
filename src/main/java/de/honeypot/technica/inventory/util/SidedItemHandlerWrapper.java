@@ -1,4 +1,4 @@
-package de.honeypot.technica.inventory;
+package de.honeypot.technica.inventory.util;
 
 import de.honeypot.technica.util.SidedCapabilityWrapper;
 import net.minecraft.item.ItemStack;
@@ -11,8 +11,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
-public abstract class SidedItemHandlerWrapper<I extends ISidedItemHandler & INBTSerializable<NBTTagCompound>> extends SidedCapabilityWrapper<IItemHandler, I> {
-    protected SidedItemHandlerWrapper(Supplier<I> itemHandlerSupplier) {
+public class SidedItemHandlerWrapper<I extends ISidedItemHandler & INBTSerializable<NBTTagCompound>> extends SidedCapabilityWrapper<IItemHandler, I> {
+    public SidedItemHandlerWrapper(Supplier<I> itemHandlerSupplier) {
         super(itemHandlerSupplier);
     }
 

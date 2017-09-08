@@ -8,7 +8,7 @@ import net.minecraftforge.common.util.INBTSerializable;
 import java.util.HashMap;
 import java.util.function.Supplier;
 
-public abstract class SidedCapabilityWrapper<C, I extends INBTSerializable<NBTTagCompound>> implements ISideSensitiveCapabilityStorage<C> {
+public abstract class SidedCapabilityWrapper<C, I extends INBTSerializable<NBTTagCompound>> implements ISideSensitiveCapabilityStorage<C, I> {
     private final I capabilityImpl;
     private final HashMap<EnumFacing, C> sideToCapabilityMapping;
 
@@ -21,7 +21,8 @@ public abstract class SidedCapabilityWrapper<C, I extends INBTSerializable<NBTTa
         sideToCapabilityMapping.put(null, createCapability(null));
     }
 
-    protected I getCapabilityImpl() {
+    @Override
+    public I getCapabilityImpl() {
         return capabilityImpl;
     }
 
@@ -30,5 +31,15 @@ public abstract class SidedCapabilityWrapper<C, I extends INBTSerializable<NBTTa
     @Override
     public C getCapability(@Nullable EnumFacing facing) {
         return sideToCapabilityMapping.get(facing);
+    }
+
+    @Override
+    public NBTTagCompound serializeNBT() {
+        return capabilityImpl.serializeNBT();
+    }
+
+    @Override
+    public void deserializeNBT(NBTTagCompound nbt) {
+        capabilityImpl.deserializeNBT(nbt);
     }
 }
