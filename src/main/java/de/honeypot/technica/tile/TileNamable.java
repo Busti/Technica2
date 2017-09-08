@@ -1,10 +1,13 @@
 package de.honeypot.technica.tile;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IWorldNameable;
 
-public abstract class TileNamable extends TileBase implements IWorldNameable {
+public abstract class TileNamable extends TileEntity implements IWorldNameable {
     private String name = "";
+
+    protected abstract String getTileName();
 
     protected boolean setName(String name) {
         if (name.isEmpty())

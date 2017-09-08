@@ -1,16 +1,16 @@
 package de.honeypot.technica.tile;
 
+import de.honeypot.technica.util.ISideSensitiveCapabilityStorage;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nullable;
 
-public abstract class TileItemHandler<I extends IItemHandler & INBTSerializable<NBTTagCompound>> extends TileEntity {
+public abstract class TileSidedItemHandler<I extends ISideSensitiveCapabilityStorage<IItemHandler>> extends TileEntity {
     protected final I inventory = createInventory();
 
     protected abstract I createInventory();
@@ -23,7 +23,7 @@ public abstract class TileItemHandler<I extends IItemHandler & INBTSerializable<
     @Override
     public <T> T getCapability(final Capability<T> capability, @Nullable final EnumFacing facing) {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inventory);
+            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inventory.getCapability(facing));
         }
 
         return super.getCapability(capability, facing);
