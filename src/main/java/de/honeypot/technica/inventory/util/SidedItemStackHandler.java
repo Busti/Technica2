@@ -7,6 +7,12 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+/**
+ * An addon to {@link ItemStackHandler} that handles the methods from {@link ISidedItemHandler},
+ * by passing them along to the non side sensitive versions in {@link ItemStackHandler}.
+ * This class is abstract because instantiating it would defy the purpose of {@link ISidedItemHandler}
+ * since it would behave the same as implementing {@link ItemStackHandler} without the side sensitive abstraction stack.
+ */
 public abstract class SidedItemStackHandler extends ItemStackHandler implements ISidedItemHandler {
     @Nonnull
     @Override

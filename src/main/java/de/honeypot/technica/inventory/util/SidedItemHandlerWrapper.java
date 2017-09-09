@@ -11,6 +11,10 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
+/**
+ * A sided wrapper around the {@link IItemHandler} capability.
+ * @param <I> The type of the side sensitive implementation.
+ */
 public class SidedItemHandlerWrapper<I extends ISidedItemHandler & INBTSerializable<NBTTagCompound>> extends SidedCapabilityWrapper<IItemHandler, I> {
     public SidedItemHandlerWrapper(Supplier<I> itemHandlerSupplier) {
         super(itemHandlerSupplier);
