@@ -1,4 +1,4 @@
-package de.honeypot.technica.util;
+package de.honeypot.technica.capability;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;

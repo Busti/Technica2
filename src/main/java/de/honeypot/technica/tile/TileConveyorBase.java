@@ -1,9 +1,9 @@
 package de.honeypot.technica.tile;
 
-import de.honeypot.technica.inventory.ItemStackHandlerConveyor;
-import de.honeypot.technica.inventory.util.ISidedItemHandler;
-import de.honeypot.technica.inventory.util.SidedItemHandlerWrapper;
-import de.honeypot.technica.util.ISideSensitiveCapabilityStorage;
+import de.honeypot.technica.capability.item.ItemStackHandlerConveyor;
+import de.honeypot.technica.capability.item.util.ISidedItemHandler;
+import de.honeypot.technica.capability.item.util.SidedItemHandlerWrapper;
+import de.honeypot.technica.capability.ISideSensitiveCapabilityStorage;
 import net.minecraftforge.items.IItemHandler;
 
 public class TileConveyorBase extends TileSidedItemHandler {

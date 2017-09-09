@@ -1,4 +1,4 @@
-package de.honeypot.technica.util;
+package de.honeypot.technica.capability;
 
 import jline.internal.Nullable;
 import net.minecraft.nbt.NBTTagCompound;

@@ -11,6 +11,6 @@ public class FluidResin extends Fluid {
 
 
     public FluidResin() {
-        super("resin_still", new ModelResourceLocation("resin_still", "inventory"), new ModelResourceLocation("resin_flow", "inventory"));
+        super("resin_still", new ModelResourceLocation("resin_still", "item"), new ModelResourceLocation("resin_flow", "item"));
     }
 }

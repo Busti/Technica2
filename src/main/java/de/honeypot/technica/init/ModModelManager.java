@@ -22,7 +22,7 @@ public class ModModelManager {
     }
 
     public static void registerItemModel(Item item) {
-        final ModelResourceLocation modelLocation = new ModelResourceLocation(item.getRegistryName().toString(), "inventory");
+        final ModelResourceLocation modelLocation = new ModelResourceLocation(item.getRegistryName().toString(), "item");
         ModelLoader.registerItemVariants(item, modelLocation);
         ModelLoader.setCustomMeshDefinition(item, MeshDefinitionFix.create(stack -> modelLocation));
     }

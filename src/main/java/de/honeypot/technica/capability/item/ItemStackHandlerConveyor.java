@@ -1,6 +1,6 @@
-package de.honeypot.technica.inventory;
+package de.honeypot.technica.capability.item;
 
-import de.honeypot.technica.inventory.util.SidedItemStackHandler;
+import de.honeypot.technica.capability.item.util.SidedItemStackHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 

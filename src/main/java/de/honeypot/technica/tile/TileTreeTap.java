@@ -61,7 +61,7 @@ public class TileTreeTap extends TileEntity implements IInventory{
         return content==null || content.getCount()==0;
     }
 
-    /* working on the inventory */
+    /* working on the item */
     @Override
     public ItemStack getStackInSlot(int index) {
 

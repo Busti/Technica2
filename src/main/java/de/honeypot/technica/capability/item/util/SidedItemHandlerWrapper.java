@@ -1,6 +1,6 @@
-package de.honeypot.technica.inventory.util;
+package de.honeypot.technica.capability.item.util;
 
-import de.honeypot.technica.util.SidedCapabilityWrapper;
+import de.honeypot.technica.capability.SidedCapabilityWrapper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
