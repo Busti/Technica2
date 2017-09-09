@@ -4,11 +4,12 @@ import de.honeypot.technica.Technica;
 import de.honeypot.technica.init.ModBlocks;
 import de.honeypot.technica.init.ModItems;
 import de.honeypot.technica.tile.TileConveyorBase;
-import net.minecraft.block.BlockContainer;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -18,10 +19,10 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BlockConveyor extends BlockContainer {
+public class BlockConveyor extends Block {
     public static final String CONVEYOR = "conveyor";
 
-    public static final IProperty DIRECTION = PropertyDirection.create("dir", EnumFacing.Plane.HORIZONTAL);
+    public static final IProperty FACING = BlockHorizontal.FACING;
     public static final Map<EnumFacing, IProperty> CONNECTED = new HashMap<>();
     public static final IProperty HAS_MOTOR = PropertyBool.create("has_motor");
 
@@ -45,7 +46,7 @@ public class BlockConveyor extends BlockContainer {
         ModItems.registerItem(item);
 
         setDefaultState(getDefaultState()
-                .withProperty(DIRECTION, EnumFacing.NORTH)
+                .withProperty(FACING, EnumFacing.NORTH)
                 .withProperty(CONNECTED.get(EnumFacing.NORTH), false)
                 .withProperty(CONNECTED.get(EnumFacing.EAST), false)
                 .withProperty(CONNECTED.get(EnumFacing.SOUTH), false)
@@ -56,7 +57,12 @@ public class BlockConveyor extends BlockContainer {
 
     @Nullable
     @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta) {
+    public TileEntity createTileEntity(World world, IBlockState state) {
         return new TileConveyorBase();
+    }
+
+    @Override
+    public boolean hasTileEntity(IBlockState state) {
+        return true;
     }
 }
