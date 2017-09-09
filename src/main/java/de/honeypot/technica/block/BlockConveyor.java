@@ -3,6 +3,7 @@ package de.honeypot.technica.block;
 import de.honeypot.technica.Technica;
 import de.honeypot.technica.init.ModBlocks;
 import de.honeypot.technica.init.ModItems;
+import de.honeypot.technica.tile.TileConveyorBase;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -56,6 +57,6 @@ public class BlockConveyor extends BlockContainer {
     @Nullable
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return null;
+        return new TileConveyorBase();
     }
 }
