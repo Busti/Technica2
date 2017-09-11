@@ -15,12 +15,12 @@ public class BlockBase extends Block implements IItemRegistrator {
 
     public BlockBase(Material material, String name) {
         super(material);
+        this.name = name;
         setRegistryName(name);
         setUnlocalizedName(name);
         ModBlocks.registerBlock(this);
-        setCreativeTab(Technica.CREATIVE_TAB_TECHNICA);
 
-        this.name = name;
+        setCreativeTab(Technica.CREATIVE_TAB_TECHNICA);
 
         ModItems.markForRegistry(this);
     }
