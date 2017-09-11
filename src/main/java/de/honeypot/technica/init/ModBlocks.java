@@ -19,6 +19,7 @@ public class ModBlocks {
     public static BlockLeavesRubber     LEAVES_RUBBER;
     public static BlockTreeTap          TREE_TAP;
     public static BlockOre              ORE;
+    public static BlockConveyor         CONVEYOR;
 
     private static ArrayList<Block> blocks = new ArrayList<Block>(20);
 
@@ -37,6 +38,7 @@ public class ModBlocks {
             LEAVES_RUBBER = new BlockLeavesRubber();
             ORE = new BlockOre(Material.ROCK, "ore");
             TREE_TAP = new BlockTreeTap();
+            CONVEYOR = new BlockConveyor("conveyor");
 
             blocks.forEach(event.getRegistry()::register);
         }
