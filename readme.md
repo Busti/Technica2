@@ -47,8 +47,8 @@ Here are a few things to keep in mind that will help get your PR approved.
 
 1. Fork this repository
 2. Clone the fork via
-  * SSH `git clone git@github.com:<your username>/Applied-Energistics-2.git` or 
-  * HTTPS `git clone https://github.com/<your username>/Applied-Energistics-2.git`
+  * SSH `git clone git@github.com:<your username>/Technica2.git` or 
+  * HTTPS `git clone https://github.com/<your username>/Technica2.git`
 3. Change code base
 4. Add changes to git `git add -A`
 5. Commit changes to your clone `git commit -m "<summery of made changes>"`
