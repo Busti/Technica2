@@ -4,12 +4,14 @@ import de.honeypot.technica.Technica;
 import de.honeypot.technica.init.ModBlocks;
 import de.honeypot.technica.init.ModItems;
 import de.honeypot.technica.tile.TileConveyorBase;
-import de.honeypot.technica.util.EnumSide;
+import de.honeypot.technica.util.modenum.EnumConTurn;
+import de.honeypot.technica.util.modenum.EnumSide;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -33,6 +35,7 @@ public class BlockConveyor extends Block {
     public static final IProperty<EnumFacing> FACING = BlockHorizontal.FACING;
     public static final Map<EnumSide, IProperty<Boolean>> CONNECTED = new HashMap<>();
     public static final IProperty<Boolean> HAS_MOTOR = PropertyBool.create("has_motor");
+    public static final IProperty<EnumConTurn> BELT = PropertyEnum.create("belt_dir", EnumConTurn.class);
 
 
     static {
@@ -61,6 +64,7 @@ public class BlockConveyor extends Block {
                 .withProperty(CONNECTED.get(EnumSide.FRONT), false)
                 .withProperty(CONNECTED.get(EnumSide.RIGHT), false)
                 .withProperty(HAS_MOTOR, false)
+                .withProperty(BELT, EnumConTurn.STRAIGHT)
         );
 
         GameRegistry.registerTileEntity(TileConveyorBase.class, name);
@@ -118,11 +122,21 @@ public class BlockConveyor extends Block {
         boolean isConnectedRight = blockRight.getBlock() == ModBlocks.CONVEYOR && posRight.offset(  blockRight.getValue(FACING)  ).equals(pos);
         boolean isConnectedBack  = blockBack.getBlock()  == ModBlocks.CONVEYOR && posBack .offset(  blockBack .getValue(FACING)  ).equals(pos);
 
+        EnumConTurn turnTex;
+        if(!state.getValue(HAS_MOTOR) && !isConnectedBack && isConnectedLeft && !isConnectedRight){
+            turnTex = EnumConTurn.LEFT;
+        } else if(!state.getValue(HAS_MOTOR) && !isConnectedBack && !isConnectedLeft && isConnectedRight){
+            turnTex = EnumConTurn.RIGHT;
+        } else{
+            turnTex = EnumConTurn.STRAIGHT;
+        }
+
         return state
                 .withProperty(CONNECTED.get(EnumSide.FRONT), isConnectedFront)
                 .withProperty(CONNECTED.get(EnumSide.BACK),  isConnectedBack)
                 .withProperty(CONNECTED.get(EnumSide.LEFT),  isConnectedLeft)
-                .withProperty(CONNECTED.get(EnumSide.RIGHT), isConnectedRight);
+                .withProperty(CONNECTED.get(EnumSide.RIGHT), isConnectedRight)
+                .withProperty(BELT, turnTex);
 
     }
 
@@ -134,7 +148,8 @@ public class BlockConveyor extends Block {
                 CONNECTED.get(EnumSide.LEFT),
                 CONNECTED.get(EnumSide.FRONT),
                 CONNECTED.get(EnumSide.RIGHT),
-                HAS_MOTOR
+                HAS_MOTOR,
+                BELT
         };
         return new BlockStateContainer(this, properties);
     }

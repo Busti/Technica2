@@ -5,7 +5,7 @@
       "1": "technica:blocks/conveyor_case",
       "0": "technica:blocks/conveyor_belt_still"
     },
-    "model": "technica:conveyor_belt_straight"
+    "model": "technica:conveyor_belt_general"
   },
   "variants": {
 
@@ -15,6 +15,20 @@
       "south": {"y": 180},
       "west": {"y": 270}
     },
+
+    "belt_dir": {
+      "straight": {
+        "textures": {"belt": "technica:blocks/conveyor_belt_still"}
+      },
+      "left": {
+        "textures": {"belt": "technica:blocks/conveyor_belt_left_still"}
+      },
+      "right": {
+        "textures": {"belt": "technica:blocks/conveyor_belt_right_still"}
+      }
+    },
+
+
 
     "left": {
       "true": {
