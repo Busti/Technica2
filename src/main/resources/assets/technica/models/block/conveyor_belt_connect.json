@@ -1,0 +1,79 @@
+{
+  "credit": "made with CModelMaker by Chloroplast",
+  "elements": [
+    {
+      "name": "19742101080175",
+      "from": [
+        1,
+        4,
+        -1
+      ],
+      "to": [
+        15,
+        8,
+        1
+      ],
+      "faces": {
+        "east": {
+          "uv": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "rotation": 0
+        },
+        "south": {
+          "uv": [
+            0.0,
+            0.0,
+            8.0,
+            16.0
+          ],
+          "texture": "#none",
+          "rotation": 0
+        },
+        "north": {
+          "uv": [
+            0.0,
+            0.0,
+            8.0,
+            16.0
+          ],
+          "texture": "#0",
+          "rotation": 90
+        },
+        "west": {
+          "uv": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "rotation": 0
+        },
+        "up": {
+          "uv": [
+            14.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": "#0",
+          "rotation": 270
+        },
+        "down": {
+          "uv": [
+            0.0,
+            0.0,
+            2.0,
+            16.0
+          ],
+          "texture": "#0",
+          "rotation": 270
+        }
+      }
+    }
+  ],
+  "ambientocclusion": false
+}
