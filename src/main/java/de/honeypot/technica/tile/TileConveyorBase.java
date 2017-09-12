@@ -11,4 +11,9 @@ public class TileConveyorBase extends TileSidedItemHandler {
     protected ISideSensitiveCapabilityStorage<IItemHandler, ISidedItemHandler> createInventory() {
         return new SidedItemHandlerWrapper(ItemStackHandlerConveyor::new);
     }
+
+    public boolean isPowered(){
+        //TODO: IMPLEMENT
+        return true;
+    }
 }

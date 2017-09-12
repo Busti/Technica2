@@ -2,71 +2,93 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {
-      "1": "technica:blocks/conveyor_case",
-      "0": "technica:blocks/conveyor_belt_still"
+      "1": "technica:blocks/conveyor_case"
     },
     "model": "technica:conveyor_belt_general"
   },
   "variants": {
-
     "facing": {
       "north": {},
-      "east": {"y":  90},
-      "south": {"y": 180},
-      "west": {"y": 270}
+      "east": {
+        "y": 90
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      }
     },
-
     "belt_dir": {
       "straight": {
-        "textures": {"belt": "technica:blocks/conveyor_belt_still"}
+        "textures": {
+          "belt": "technica:blocks/conveyor_belt",
+          "0": "technica:blocks/conveyor_belt"
+        }
       },
       "left": {
-        "textures": {"belt": "technica:blocks/conveyor_belt_left_still"}
+        "textures": {
+          "belt": "technica:blocks/conveyor_belt_left",
+          "0": "technica:blocks/conveyor_belt"
+        }
       },
       "right": {
-        "textures": {"belt": "technica:blocks/conveyor_belt_right_still"}
+        "textures": {
+          "belt": "technica:blocks/conveyor_belt_right",
+          "0": "technica:blocks/conveyor_belt"
+        }
+      },
+      "straight_still": {
+        "textures": {
+          "belt": "technica:blocks/conveyor_belt_still",
+          "0": "technica:blocks/conveyor_belt_still"
+        }
+      },
+      "left_still": {
+        "textures": {
+          "belt": "technica:blocks/conveyor_belt_left_still",
+          "0": "technica:blocks/conveyor_belt_still"
+        }
+      },
+      "right_still": {
+        "textures": {
+          "belt": "technica:blocks/conveyor_belt_right_still",
+          "0": "technica:blocks/conveyor_belt_still"
+        }
       }
     },
-
-
-
     "left": {
       "true": {
-        "submodel" : "technica:conveyor_rail_left_n"
+        "submodel": "technica:conveyor_rail_left_n"
       },
       "false": {
-        "submodel" : "technica:conveyor_rail_left"
+        "submodel": "technica:conveyor_rail_left"
       }
     },
-
     "right": {
       "true": {
-        "submodel" : "technica:conveyor_rail_right_n"
+        "submodel": "technica:conveyor_rail_right_n"
       },
       "false": {
-        "submodel" : "technica:conveyor_rail_right"
+        "submodel": "technica:conveyor_rail_right"
       }
     },
-
     "back": {
       "true": {},
       "false": {
-        "submodel" : "technica:conveyor_rail_start"
+        "submodel": "technica:conveyor_rail_start"
       }
     },
-
     "front": {
       "true": {
-        "submodel" : "technica:conveyor_belt_connect"
+        "submodel": "technica:conveyor_belt_connect"
       },
       "false": {}
     },
-
     "has_motor": {
       "true": {},
       "false": {}
     },
-
     "inventory": [
       {}
     ]
