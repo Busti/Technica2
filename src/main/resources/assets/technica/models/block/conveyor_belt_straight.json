@@ -1,79 +1,18 @@
 {
-  "credit": "made with CModelMaker by Chloroplast",
+  "parent": "block/block",
   "elements": [
     {
-      "name": "belt",
-      "from": [
-        1,
-        4,
-        1
-      ],
-      "to": [
-        15,
-        8,
-        15
-      ],
+      "name": "cube",
+      "from": [1, 4, 1],
+      "to": [15, 8, 15],
       "faces": {
-        "east": {
-          "uv": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "rotation": 0
-        },
-        "south": {
-          "uv": [
-            0.0,
-            0.0,
-            8.0,
-            16.0
-          ],
-          "texture": "#0",
-          "rotation": 270
-        },
-        "north": {
-          "uv": [
-            6.0,
-            0.0,
-            10.0,
-            16.0
-          ],
-          "texture": "#0",
-          "rotation": 270
-        },
-        "west": {
-          "uv": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "rotation": 0
-        },
-        "up": {
-          "uv": [
-            0.0,
-            0.0,
-            14.0,
-            16.0
-          ],
-          "texture": "#0",
-          "rotation": 270
-        },
-        "down": {
-          "uv": [
-            2.0,
-            0.0,
-            16.0,
-            16.0
-          ],
-          "texture": "#0",
-          "rotation": 270
-        }
+        "south": {"uv": [0, 0,  8, 16], "texture": "#0", "rotation": 270},
+        "north": {"uv": [6, 0, 10, 16], "texture": "#0", "rotation": 270},
+        "up":    {"uv": [0, 0, 14, 16], "texture": "#0", "rotation": 270},
+        "down":  {"uv": [2, 0, 16, 16], "texture": "#0", "rotation": 270}
       }
     }
   ],
+  "groups": [0],
   "ambientocclusion": false
 }

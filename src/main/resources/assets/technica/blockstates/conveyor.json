@@ -1,111 +1,58 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "minecraft:cube_column",
     "textures": {
-      "#0": "technica:blocks/conveyor"
-    }
+      "1": "technica:blocks/conveyor_case",
+      "0": "technica:blocks/conveyor_belt_still"
+    },
+    "model": "technica:conveyor_belt_straight"
   },
   "variants": {
-  
-	"sleft": {
-		"true": {
-			"submodel": "technica:conveyor_rail_left"
-		},
-		"false": {
-			"submodel": "technica:conveyor_rail_left_n"
-		}
-	}
-	"sright": {
-		"true": {
-			"submodel": "technica:conveyor_rail_right"
-		},
-		"false": {
-			"submodel": "technica:conveyor_rail_right_n"
-		}
-	}
-  
-	"cfront": {
-		"true": {
-			"submodel": "technica:conveyor_connect"
-		},
-		"false": {}
-	},
-  
-  
-    "motor": {
-		"true": {
-			"submodel": "technica:conveyor_motor",
-			"submodel": "technica:conveyor_belt_straight",
-			
-			"sleft": {
-				"true": {
-					"sright": {
-						"true": {
-							"submodel": "technica:conveyor_belt_straight"
-						},
-						"false": {}
-					}
-				},
-				"false": {}
-			}
-		},
-		"false": {
-	  
-			"submodel": "technica:conveyor_rail_start",
-	  
-			"sback": {
-				"true": {
-					"submodel": "technica:conveyor_belt_straight",
-					
-					"sleft": {
-						"true": {
-							"sright": {
-								"true": {
-									"submodel": "technica:conveyor_belt_straight"
-								},
-								"false": {}
-							}
-						},
-						"false": {}
-					}
-				},
-				"false": {
-					"submodel": "technica:conveyor_rail_start",
-					
-					"sleft": {
-						"true": {
-							"sright": {
-								"true": {
-									"submodel": "technica:conveyor_belt_straight"
-								},
-								"false": {
-									"submodel": "technica:conveyor_belt_left"
-								}
-							}
-						},
-						"false": {
-							"sright": {
-								"true": {
-									"submodel": "technica:conveyor_belt_right"
-								},
-								"false": {
-									"submodel": "technica:conveyor_belt_straight"
-								}
-							}
-						}
-					}
-		    
-		  
-				}			
-			}
-	  
-		}
+
+    "facing": {
+      "north": {},
+      "east": {"y":  90},
+      "south": {"y": 180},
+      "west": {"y": 270}
     },
 
-	
-	
-	
+    "left": {
+      "true": {
+        "submodel" : "technica:conveyor_rail_left_n"
+      },
+      "false": {
+        "submodel" : "technica:conveyor_rail_left"
+      }
+    },
+
+    "right": {
+      "true": {
+        "submodel" : "technica:conveyor_rail_right_n"
+      },
+      "false": {
+        "submodel" : "technica:conveyor_rail_right"
+      }
+    },
+
+    "back": {
+      "true": {},
+      "false": {
+        "submodel" : "technica:conveyor_rail_start"
+      }
+    },
+
+    "front": {
+      "true": {
+        "submodel" : "technica:conveyor_belt_connect"
+      },
+      "false": {}
+    },
+
+    "has_motor": {
+      "true": {},
+      "false": {}
+    },
+
     "inventory": [
       {}
     ]
