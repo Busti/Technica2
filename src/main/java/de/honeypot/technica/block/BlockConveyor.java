@@ -80,48 +80,49 @@ public class BlockConveyor extends Block {
         BlockPos posLeft;
         BlockPos posRight;
 
-        switch(dir){
+        switch (dir) {
             case NORTH:
                 posFront = pos.north();
-                posBack  = pos.south();
-                posLeft  = pos.west();
+                posBack = pos.south();
+                posLeft = pos.west();
                 posRight = pos.east();
                 break;
             case SOUTH:
                 posFront = pos.south();
-                posBack  = pos.north();
-                posLeft  = pos.east();
+                posBack = pos.north();
+                posLeft = pos.east();
                 posRight = pos.west();
                 break;
             case WEST:
                 posFront = pos.west();
-                posBack  = pos.east();
-                posLeft  = pos.south();
+                posBack = pos.east();
+                posLeft = pos.south();
                 posRight = pos.north();
                 break;
             case EAST:
                 posFront = pos.east();
-                posBack  = pos.west();
-                posLeft  = pos.north();
+                posBack = pos.west();
+                posLeft = pos.north();
                 posRight = pos.south();
                 break;
-            default: throw new IllegalArgumentException("dir is not in horizontal plane. this should never happend");
+            default:
+                throw new IllegalArgumentException("dir is not in horizontal plane. this should never happend");
         }
 
         IBlockState blockFront = worldIn.getBlockState(posFront);
-        IBlockState blockBack  = worldIn.getBlockState(posBack);
-        IBlockState blockLeft  = worldIn.getBlockState(posLeft);
+        IBlockState blockBack = worldIn.getBlockState(posBack);
+        IBlockState blockLeft = worldIn.getBlockState(posLeft);
         IBlockState blockRight = worldIn.getBlockState(posRight);
 
         boolean isConnectedFront = blockFront.getBlock() == ModBlocks.CONVEYOR;
-        boolean isConnectedLeft  = blockLeft.getBlock()  == ModBlocks.CONVEYOR && posLeft .offset(  blockLeft .getValue(FACING)  ).equals(pos);
-        boolean isConnectedRight = blockRight.getBlock() == ModBlocks.CONVEYOR && posRight.offset(  blockRight.getValue(FACING)  ).equals(pos);
-        boolean isConnectedBack  = blockBack.getBlock()  == ModBlocks.CONVEYOR && posBack .offset(  blockBack .getValue(FACING)  ).equals(pos);
+        boolean isConnectedLeft = blockLeft.getBlock() == ModBlocks.CONVEYOR && posLeft.offset(blockLeft.getValue(FACING)).equals(pos);
+        boolean isConnectedRight = blockRight.getBlock() == ModBlocks.CONVEYOR && posRight.offset(blockRight.getValue(FACING)).equals(pos);
+        boolean isConnectedBack = blockBack.getBlock() == ModBlocks.CONVEYOR && posBack.offset(blockBack.getValue(FACING)).equals(pos);
 
         return state
                 .withProperty(CONNECTED.get(EnumSide.FRONT), isConnectedFront)
-                .withProperty(CONNECTED.get(EnumSide.BACK),  isConnectedBack)
-                .withProperty(CONNECTED.get(EnumSide.LEFT),  isConnectedLeft)
+                .withProperty(CONNECTED.get(EnumSide.BACK), isConnectedBack)
+                .withProperty(CONNECTED.get(EnumSide.LEFT), isConnectedLeft)
                 .withProperty(CONNECTED.get(EnumSide.RIGHT), isConnectedRight);
 
     }
@@ -159,6 +160,18 @@ public class BlockConveyor extends Block {
     @SuppressWarnings("deprecation")
     public EnumBlockRenderType getRenderType(IBlockState state) {
         return EnumBlockRenderType.MODEL;
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public boolean isFullCube(IBlockState state) {
+        return false;
     }
 
     /* Tile Entity */
