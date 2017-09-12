@@ -60,7 +60,7 @@ Here are a few things to keep in mind that will help get your PR approved.
 If you are only doing single file pull requests, GitHub supports using a quick way without the need of cloning your fork. Also read up about [synching](https://help.github.com/articles/syncing-a-fork) if you plan to contribute on regular basis.
 
 
-## Applied Energistics 2 Localization
+## Technica2 Localization
 
 ### English Text
 
