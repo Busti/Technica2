@@ -35,10 +35,16 @@ repositories {
         name = "JEI Maven."
         url = "http://dvs1.progwml6.com/files/maven"
     }
+    maven {
+        name = "Covers Maven"
+        url = "http://maven.covers1624.net"
+    }
 }
 
 dependencies {
     compile "codechicken:NotEnoughItems:1.12-2.4.0.231:deobf"
+    compile "cofh:ThermalExpansion:1.12-5.+:deobf"
+    compile "cofh:ThermalDynamics:1.12-2.+:deobf"
 }
 
 processResources {
