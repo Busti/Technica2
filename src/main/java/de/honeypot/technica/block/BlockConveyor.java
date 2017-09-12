@@ -12,9 +12,13 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -29,8 +33,9 @@ public class BlockConveyor extends Block {
     public static final Map<EnumSide, IProperty<Boolean>> CONNECTED = new HashMap<>();
     public static final IProperty<Boolean> HAS_MOTOR = PropertyBool.create("has_motor");
 
+
     static {
-        for (EnumSide side: EnumSide.values()) {
+        for (EnumSide side : EnumSide.values()) {
             CONNECTED.put(side, PropertyBool.create(side.getName()));
         }
     }
@@ -84,6 +89,17 @@ public class BlockConveyor extends Block {
     @Override
     public int getMetaFromState(IBlockState state) {
         return state.getValue(FACING).getHorizontalIndex();
+    }
+
+    @Override
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
+        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing());
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.MODEL;
     }
 
     /* Tile Entity */
