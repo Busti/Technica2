@@ -15,6 +15,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -61,6 +63,64 @@ public class BlockConveyor extends Block {
     }
 
     /* State Handling */
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+
+
+        EnumFacing dir = state.getValue(FACING);
+
+        BlockPos posFront;
+        BlockPos posBack;
+        BlockPos posLeft;
+        BlockPos posRight;
+
+        switch(dir){
+            case NORTH:
+                posFront = pos.north();
+                posBack  = pos.south();
+                posLeft  = pos.west();
+                posRight = pos.east();
+                break;
+            case SOUTH:
+                posFront = pos.south();
+                posBack  = pos.north();
+                posLeft  = pos.east();
+                posRight = pos.west();
+                break;
+            case WEST:
+                posFront = pos.west();
+                posBack  = pos.east();
+                posLeft  = pos.south();
+                posRight = pos.north();
+                break;
+            case EAST:
+                posFront = pos.east();
+                posBack  = pos.west();
+                posLeft  = pos.north();
+                posRight = pos.south();
+                break;
+            default: throw new IllegalArgumentException("dir is not in horizontal plane. this should never happend");
+        }
+
+        IBlockState blockFront = worldIn.getBlockState(posFront);
+        IBlockState blockBack  = worldIn.getBlockState(posBack);
+        IBlockState blockLeft  = worldIn.getBlockState(posLeft);
+        IBlockState blockRight = worldIn.getBlockState(posRight);
+
+        boolean isConnectedFront = blockFront.getBlock() == ModBlocks.CONVEYOR;
+        boolean isConnectedLeft  = blockLeft.getBlock()  == ModBlocks.CONVEYOR && posLeft .offset(  blockLeft .getValue(FACING)  ).equals(pos);
+        boolean isConnectedRight = blockRight.getBlock() == ModBlocks.CONVEYOR && posRight.offset(  blockRight.getValue(FACING)  ).equals(pos);
+        boolean isConnectedBack  = blockBack.getBlock()  == ModBlocks.CONVEYOR && posBack .offset(  blockBack .getValue(FACING)  ).equals(pos);
+
+        return state
+                .withProperty(CONNECTED.get(EnumSide.FRONT), isConnectedFront)
+                .withProperty(CONNECTED.get(EnumSide.BACK),  isConnectedBack)
+                .withProperty(CONNECTED.get(EnumSide.LEFT),  isConnectedLeft)
+                .withProperty(CONNECTED.get(EnumSide.RIGHT), isConnectedRight);
+
+    }
 
     @Override
     protected BlockStateContainer createBlockState() {
