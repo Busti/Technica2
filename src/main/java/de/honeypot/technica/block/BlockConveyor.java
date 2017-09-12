@@ -4,6 +4,7 @@ import de.honeypot.technica.Technica;
 import de.honeypot.technica.init.ModBlocks;
 import de.honeypot.technica.init.ModItems;
 import de.honeypot.technica.tile.TileConveyorBase;
+import de.honeypot.technica.util.EnumSide;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
@@ -25,12 +26,12 @@ public class BlockConveyor extends Block {
     public static final String CONVEYOR = "conveyor";
 
     public static final IProperty<EnumFacing> FACING = BlockHorizontal.FACING;
-    public static final Map<EnumFacing, IProperty<Boolean>> CONNECTED = new HashMap<>();
+    public static final Map<EnumSide, IProperty<Boolean>> CONNECTED = new HashMap<>();
     public static final IProperty<Boolean> HAS_MOTOR = PropertyBool.create("has_motor");
 
     static {
-        for (EnumFacing facing: EnumFacing.Plane.HORIZONTAL.facings()) {
-            CONNECTED.put(facing, PropertyBool.create("connected_" + facing.getName()));
+        for (EnumSide side: EnumSide.values()) {
+            CONNECTED.put(side, PropertyBool.create(side.getName()));
         }
     }
 
@@ -49,10 +50,10 @@ public class BlockConveyor extends Block {
 
         setDefaultState(getDefaultState()
                 .withProperty(FACING, EnumFacing.NORTH)
-                .withProperty(CONNECTED.get(EnumFacing.NORTH), false)
-                .withProperty(CONNECTED.get(EnumFacing.EAST), false)
-                .withProperty(CONNECTED.get(EnumFacing.SOUTH), false)
-                .withProperty(CONNECTED.get(EnumFacing.WEST), false)
+                .withProperty(CONNECTED.get(EnumSide.BACK), false)
+                .withProperty(CONNECTED.get(EnumSide.LEFT), false)
+                .withProperty(CONNECTED.get(EnumSide.FRONT), false)
+                .withProperty(CONNECTED.get(EnumSide.RIGHT), false)
                 .withProperty(HAS_MOTOR, false)
         );
 
@@ -65,10 +66,10 @@ public class BlockConveyor extends Block {
     protected BlockStateContainer createBlockState() {
         IProperty[] properties = {
                 FACING,
-                CONNECTED.get(EnumFacing.NORTH),
-                CONNECTED.get(EnumFacing.EAST),
-                CONNECTED.get(EnumFacing.SOUTH),
-                CONNECTED.get(EnumFacing.WEST),
+                CONNECTED.get(EnumSide.BACK),
+                CONNECTED.get(EnumSide.LEFT),
+                CONNECTED.get(EnumSide.FRONT),
+                CONNECTED.get(EnumSide.RIGHT),
                 HAS_MOTOR
         };
         return new BlockStateContainer(this, properties);
