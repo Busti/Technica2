@@ -1,11 +1,6 @@
 package de.honeypot.technica.capability.item;
 
 import de.honeypot.technica.capability.item.util.SidedItemStackHandler;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * The item handler for the conveyor belt.
@@ -18,9 +13,11 @@ public class ItemStackHandlerConveyor extends SidedItemStackHandler {
         super(2);
     }
 
-    @Nonnull
-    @Override
-    public ItemStack insertItem(@Nullable EnumFacing facing, int slot, @Nonnull ItemStack stack, boolean simulate) {
-        return super.insertItem(facing, slot, stack, simulate);
-    }
+
+
+//    @Nonnull
+//    @Override
+//    public ItemStack insertItem(@Nullable EnumFacing facing, int slot, @Nonnull ItemStack stack, boolean simulate) {
+//        return super.insertItem(facing, slot, stack, simulate);
+//    }
 }

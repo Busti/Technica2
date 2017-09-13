@@ -7,6 +7,7 @@ import de.honeypot.technica.capability.ISideSensitiveCapabilityStorage;
 import net.minecraftforge.items.IItemHandler;
 
 public class TileConveyorBase extends TileSidedItemHandler {
+
     @Override
     protected ISideSensitiveCapabilityStorage<IItemHandler, ISidedItemHandler> createInventory() {
         return new SidedItemHandlerWrapper(new ItemStackHandlerConveyor());
@@ -16,4 +17,5 @@ public class TileConveyorBase extends TileSidedItemHandler {
         //TODO: IMPLEMENT
         return true;
     }
+
 }
