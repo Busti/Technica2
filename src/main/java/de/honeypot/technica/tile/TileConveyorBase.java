@@ -9,7 +9,7 @@ import net.minecraftforge.items.IItemHandler;
 public class TileConveyorBase extends TileSidedItemHandler {
     @Override
     protected ISideSensitiveCapabilityStorage<IItemHandler, ISidedItemHandler> createInventory() {
-        return new SidedItemHandlerWrapper(ItemStackHandlerConveyor::new);
+        return new SidedItemHandlerWrapper(new ItemStackHandlerConveyor());
     }
 
     public boolean isPowered(){

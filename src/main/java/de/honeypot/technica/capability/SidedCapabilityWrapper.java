@@ -6,7 +6,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.util.INBTSerializable;
 
 import java.util.HashMap;
-import java.util.function.Supplier;
 
 /**
  * A capability wrapper that stores an instance of a sideless capability for every side available in {@link EnumFacing}
@@ -19,8 +18,8 @@ public abstract class SidedCapabilityWrapper<C, I extends INBTSerializable<NBTTa
     private final I capabilityImpl;
     private final HashMap<EnumFacing, C> sideToCapabilityMapping;
 
-    protected SidedCapabilityWrapper(Supplier<I> capabilityImplSupplier) {
-        capabilityImpl = capabilityImplSupplier.get();
+    protected SidedCapabilityWrapper(I capabilityImpl) {
+        this.capabilityImpl = capabilityImpl;
 
         sideToCapabilityMapping = new HashMap<>();
         for (EnumFacing facing :EnumFacing.VALUES)

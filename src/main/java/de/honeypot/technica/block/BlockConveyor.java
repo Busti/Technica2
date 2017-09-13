@@ -1,12 +1,9 @@
 package de.honeypot.technica.block;
 
-import de.honeypot.technica.Technica;
 import de.honeypot.technica.init.ModBlocks;
-import de.honeypot.technica.init.ModItems;
 import de.honeypot.technica.tile.TileConveyorBase;
 import de.honeypot.technica.util.modenum.EnumConTurn;
 import de.honeypot.technica.util.modenum.EnumSide;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -15,7 +12,6 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -29,7 +25,7 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BlockConveyor extends Block {
+public class BlockConveyor extends BlockBase {
     public static final String CONVEYOR = "conveyor";
 
     public static final IProperty<EnumFacing> FACING = BlockHorizontal.FACING;
@@ -45,17 +41,7 @@ public class BlockConveyor extends Block {
     }
 
     public BlockConveyor(String name) {
-        super(Material.IRON);
-        setRegistryName(name);
-        setUnlocalizedName(name);
-        ModBlocks.registerBlock(this);
-        setCreativeTab(Technica.CREATIVE_TAB_TECHNICA);
-
-        ItemBlock item = new ItemBlock(this);
-        item.setRegistryName(name);
-        item.setUnlocalizedName(name);
-        item.setCreativeTab(Technica.CREATIVE_TAB_TECHNICA);
-        ModItems.registerItem(item);
+        super(Material.IRON, name);
 
         setDefaultState(getDefaultState()
                 .withProperty(FACING, EnumFacing.NORTH)

@@ -2,6 +2,7 @@ package de.honeypot.technica.capability.item.util;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
@@ -14,6 +15,18 @@ import javax.annotation.Nullable;
  * since it would behave the same as implementing {@link ItemStackHandler} without the side sensitive abstraction stack.
  */
 public abstract class SidedItemStackHandler extends ItemStackHandler implements ISidedItemHandler {
+    protected SidedItemStackHandler() {
+        this(1);
+    }
+
+    protected SidedItemStackHandler(int size) {
+        super(size);
+    }
+
+    protected SidedItemStackHandler(NonNullList<ItemStack> stacks) {
+        super(stacks);
+    }
+
     @Nonnull
     @Override
     public ItemStack insertItem(@Nullable EnumFacing facing, int slot, @Nonnull ItemStack stack, boolean simulate) {
