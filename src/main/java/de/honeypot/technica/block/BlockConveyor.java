@@ -56,6 +56,7 @@ public class BlockConveyor extends BlockBase {
         );
 
         GameRegistry.registerTileEntity(TileConveyorBase.class, name);
+        //ClientRegistry.bindTileEntitySpecialRenderer(TileConveyorBase.class, new TESRConveyor());
     }
 
     @Override
