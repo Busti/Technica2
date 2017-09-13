@@ -10,12 +10,15 @@ import javax.annotation.Nullable;
 /**
  * The item handler for the conveyor belt.
  * The slots are used as follows:
- *   1 -> The input slot of the conveyor belt.
- *   2 -> The motor slot.
+ *   0 -> The universal input slot for the conveyor.
+ *     Sides: UP, DOWN, FRONT, NULL
+ *   1 -> The back side.
+ *   2 -> The left side.
+ *   3 -> The right side.
  */
 public class ItemStackHandlerConveyor extends SidedItemStackHandler {
     public ItemStackHandlerConveyor() {
-        super(2);
+        super(4);
     }
 
     @Nonnull
