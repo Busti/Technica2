@@ -1,7 +1,7 @@
 package de.honeypot.technica.client.redner;
 
 import de.honeypot.technica.init.ModItems;
-import de.honeypot.technica.tile.TileConveyorBase;
+import de.honeypot.technica.tile.conveyor.TileConveyorBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.RenderItem;

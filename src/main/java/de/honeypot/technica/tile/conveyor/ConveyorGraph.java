@@ -1,6 +1,5 @@
 package de.honeypot.technica.tile.conveyor;
 
-import de.honeypot.technica.tile.TileConveyorBase;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
@@ -26,8 +25,8 @@ public class ConveyorGraph {
      *
      */
 
-
-    private final static double ELEMENT_LENGTH = 4/16d;
+    final static int    MAX_ELEMENTS_ON_BLOCK = 4;
+    final static double ELEMENT_LENGTH = MAX_ELEMENTS_ON_BLOCK / 16d;
 
     private List<TileConveyorBase> nodes = new ArrayList<>();
     private LinkedList<ConveyorGraphElement> items = new LinkedList<>();
