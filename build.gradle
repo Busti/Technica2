@@ -19,9 +19,8 @@ compileJava {
 }
 
 minecraft {
-    version = "1.12.1-14.22.0.2464"
+    version = "1.12.1-14.22.1.2479"
     runDir = "run"
-
     mappings = "snapshot_20170624"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
