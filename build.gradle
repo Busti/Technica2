@@ -41,7 +41,7 @@ repositories {
 }
 
 dependencies {
-    compile "codechicken:NotEnoughItems:1.12-2.4.0.231:deobf"
+    compile "codechicken:NotEnoughItems:1.12-2.+:deobf"
     compile "cofh:ThermalExpansion:1.12-5.+:deobf"
     compile "cofh:ThermalDynamics:1.12-2.+:deobf"
 }
