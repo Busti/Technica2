@@ -27,6 +27,7 @@ public class ConveyorGraph {
      *
      */
 
+
     final static int    MAX_ELEMENTS_ON_BLOCK = 4;
     final static double ELEMENT_LENGTH = MAX_ELEMENTS_ON_BLOCK / 16d;
 
@@ -54,6 +55,12 @@ public class ConveyorGraph {
             //double offsetAbsoluteNext
 
         }
+    }
+
+    public void addNode(TileConveyorBase node){
+        DEBUG();
+        ++length;
+        nodes.add(node);
     }
 
     private void updateAllBlockOffsets(){

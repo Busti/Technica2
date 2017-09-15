@@ -6,15 +6,48 @@ import de.honeypot.technica.capability.item.ItemStackHandlerConveyor;
 import de.honeypot.technica.capability.item.util.ISidedItemHandler;
 import de.honeypot.technica.capability.item.util.SidedItemHandlerWrapper;
 import de.honeypot.technica.tile.TileSidedItemHandler;
+import de.honeypot.technica.util.modenum.EnumSide;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.world.World;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandler;
 
-public class TileConveyorBase extends TileSidedItemHandler {
+public class TileConveyorBase extends TileSidedItemHandler implements ITickable {
+
+    private ConveyorGraph graph;
+    private boolean isGraphRoot;
+
+    private boolean isFullyLoaded; //this variable should only be false if the entity was nod initialise yet
 
 
+    public TileConveyorBase(){
+        isGraphRoot = false;
+        isFullyLoaded = false;
+    }
+
+
+    @Override
+    public void update() {
+        if(!isFullyLoaded){
+
+            System.out.println("reading world "+  getWorld()  );
+
+
+            isFullyLoaded = true;
+        }
+
+        System.out.println("tick");
+    }
+
+
+
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        super.readFromNBT(compound);
+    }
 
     @Override
     protected ISideSensitiveCapabilityStorage<IItemHandler, ISidedItemHandler> createInventory() {
@@ -29,10 +62,19 @@ public class TileConveyorBase extends TileSidedItemHandler {
     /**
      * should be called everytime the blockstate was updated
      */
-    public void blockStateUpdated(IBlockState stateNew){
+    public void blockStateUpdated(IBlockState stateNew, BlockPos pos){
 
         if(getWorld().isRemote){
             stateGeometry = ConveyorGeometry.get(stateNew.getValue(BlockConveyor.BELT), stateNew.getValue(BlockConveyor.FACING));
+        }
+
+        if(isGraphRoot && !stateNew.getValue(BlockConveyor.HAS_MOTOR)){
+
+            if(stateNew.getValue(BlockConveyor.CONNECTED.get(EnumSide.BACK))){
+
+            }
+
+
         }
 
     }
@@ -77,8 +119,5 @@ public class TileConveyorBase extends TileSidedItemHandler {
     public ConveyorGeometry getItemGeometry(){
         return stateGeometry;
     }
-
-
-
 
 }

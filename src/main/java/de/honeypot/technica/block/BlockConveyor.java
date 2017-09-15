@@ -1,10 +1,12 @@
 package de.honeypot.technica.block;
 
 import de.honeypot.technica.init.ModBlocks;
+import de.honeypot.technica.tile.TestTE;
 import de.honeypot.technica.tile.conveyor.TileConveyorBase;
 import de.honeypot.technica.util.modenum.EnumConTurn;
 import de.honeypot.technica.util.modenum.EnumSide;
 import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -56,6 +58,7 @@ public class BlockConveyor extends BlockBase {
         );
 
         GameRegistry.registerTileEntity(TileConveyorBase.class, name);
+
         //ClientRegistry.bindTileEntitySpecialRenderer(TileConveyorBase.class, new TESRConveyor());
     }
 
@@ -126,6 +129,7 @@ public class BlockConveyor extends BlockBase {
             turnTex = EnumConTurn.STRAIGHT;
         }
 
+
         return state
                 .withProperty(CONNECTED.get(EnumSide.FRONT), isConnectedFront)
                 .withProperty(CONNECTED.get(EnumSide.BACK),  isConnectedBack)
@@ -188,11 +192,13 @@ public class BlockConveyor extends BlockBase {
     @Nullable
     @Override
     public TileEntity createTileEntity(World world, IBlockState state) {
-        return new TileConveyorBase();
+        //return new TileConveyorBase();
+        return new TestTE();
     }
 
     @Override
     public boolean hasTileEntity(IBlockState state) {
         return true;
     }
+
 }
