@@ -1,5 +1,6 @@
 package de.honeypot.technica.block;
 
+import de.honeypot.technica.client.render.TESRConveyor;
 import de.honeypot.technica.init.ModBlocks;
 import de.honeypot.technica.tile.conveyor.TileConveyorBase;
 import de.honeypot.technica.util.modenum.EnumConTurn;
@@ -20,6 +21,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import javax.annotation.Nullable;
@@ -56,7 +58,7 @@ public class BlockConveyor extends BlockBase {
         );
 
         GameRegistry.registerTileEntity(TileConveyorBase.class, name);
-        //ClientRegistry.bindTileEntitySpecialRenderer(TileConveyorBase.class, new TESRConveyor());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileConveyorBase.class, new TESRConveyor());
     }
 
     @Override
