@@ -2,6 +2,7 @@ package de.honeypot.technica.block;
 
 import de.honeypot.technica.client.render.TESRConveyor;
 import de.honeypot.technica.init.ModBlocks;
+import de.honeypot.technica.tile.TestTE;
 import de.honeypot.technica.tile.conveyor.TileConveyorBase;
 import de.honeypot.technica.util.modenum.EnumConTurn;
 import de.honeypot.technica.util.modenum.EnumSide;
