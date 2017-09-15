@@ -1,6 +1,8 @@
 package de.honeypot.technica.tile.conveyor;
 
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,9 +21,9 @@ public class ConveyorGraph {
      *      |    |      |    |
      *      |    |      |    |
      *      *----*      *----*
-     *           |      ^____/
-     *           \_____/  ELEMENT_LENGTH
-     *             offset
+     *
+     *                  |--->|     ELEMENT_LENGTH
+     *            |---->|          offset
      *
      */
 
@@ -30,6 +32,7 @@ public class ConveyorGraph {
 
     private List<TileConveyorBase> nodes = new ArrayList<>();
     private LinkedList<ConveyorGraphElement> items = new LinkedList<>();
+
 
     /** DEBUG THREAD TEST **/
     private static LinkedList<Thread> DEBUG_THREADLIST = new LinkedList<>();
@@ -51,6 +54,34 @@ public class ConveyorGraph {
             //double offsetAbsoluteNext
 
         }
+    }
+
+    private void updateAllBlockOffsets(){
+
+
+        // clear all cge-caches
+        nodes.forEach(node -> node.cacheContainingClear());
+
+        double offsetAbsoluteCurrent = 0;
+
+        Iterator<ConveyorGraphElement> iter = items.descendingIterator();
+        while(iter.hasNext()){
+            ConveyorGraphElement cge = iter.next();
+            offsetAbsoluteCurrent += cge.getOffset();
+
+            int blockIndex = length - 1 - (int)offsetAbsoluteCurrent;
+            TileConveyorBase block = nodes.get( blockIndex );
+
+
+            float blockOffset = 1 + (int)offsetAbsoluteCurrent - (float)offsetAbsoluteCurrent;
+
+            block.getItemGeometry().getBlockPosition( cge.getOffsetFromOriginBlock(), blockOffset);
+
+            block.cacheContainingAdd( cge );
+            offsetAbsoluteCurrent += ELEMENT_LENGTH;
+
+        }
+
     }
 
     private static void DEBUG(){

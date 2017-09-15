@@ -44,6 +44,7 @@ dependencies {
     compile "codechicken:NotEnoughItems:1.12-2.+:deobf"
     compile "cofh:ThermalExpansion:1.12-5.+:deobf"
     compile "cofh:ThermalDynamics:1.12-2.+:deobf"
+    compile "org.joml:joml:1.9.4"
 }
 
 processResources {
