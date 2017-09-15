@@ -128,6 +128,7 @@ public class BlockConveyor extends BlockBase {
             turnTex = EnumConTurn.STRAIGHT;
         }
 
+
         return state
                 .withProperty(CONNECTED.get(EnumSide.FRONT), isConnectedFront)
                 .withProperty(CONNECTED.get(EnumSide.BACK),  isConnectedBack)
@@ -190,7 +191,8 @@ public class BlockConveyor extends BlockBase {
     @Nullable
     @Override
     public TileEntity createTileEntity(World world, IBlockState state) {
-        return new TileConveyorBase();
+        //return new TileConveyorBase();
+        return new TestTE();
     }
 
     @Override
