@@ -18,6 +18,8 @@ public class TESRConveyor extends TileEntitySpecialRenderer<TileConveyorBase> {
         if (renderItem == null) renderItem = Minecraft.getMinecraft().getRenderItem();
 
         GlStateManager.pushMatrix();
+        GlStateManager.enableRescaleNormal();
+        GlStateManager.scale(.5, .5, .5);
         GlStateManager.translate(x, y + 2, z);
         bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 
@@ -28,20 +30,4 @@ public class TESRConveyor extends TileEntitySpecialRenderer<TileConveyorBase> {
 
         GlStateManager.popMatrix();
     }
-
-    /*@Override
-    public void renderTileEntityFast(TileConveyorBase te, double x, double y, double z, float partialTicks, int destroyStage, float partial, BufferBuilder buffer) {
-        //Todo: 14.09.2017 Move to init?
-        if (renderItem == null) renderItem = Minecraft.getMinecraft().getRenderItem();
-
-        ItemStack stack = new ItemStack(ModItems.COIL_COPPER);
-        IBakedModel model = renderItem.getItemModelWithOverrides(stack, null, null);
-
-        //TRSRTransformation transformation = new TRSRTransformation()
-
-        List<BakedQuad> quads = model.getQuads(null, null, 0);
-        for (BakedQuad quad : quads) {
-            buffer.addVertexData(quad.getVertexData());
-        }
-    }*/
 }
